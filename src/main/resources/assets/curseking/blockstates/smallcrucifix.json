@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,variant=upright": { "model": "curseking:smallcross", "y": 180 },
+    "facing=south,variant=upright": { "model": "curseking:smallcross", "y": 0 },
+    "facing=west,variant=upright":  { "model": "curseking:smallcross", "y": 90 },
+    "facing=east,variant=upright":  { "model": "curseking:smallcross", "y": 270 },
+    "facing=north,variant=slanted": { "model": "curseking:smallcrossslanted", "y": 180 },
+    "facing=south,variant=slanted": { "model": "curseking:smallcrossslanted", "y": 0 },
+    "facing=west,variant=slanted":  { "model": "curseking:smallcrossslanted", "y": 90 },
+    "facing=east,variant=slanted":  { "model": "curseking:smallcrossslanted", "y": 270 }
+  }
+}

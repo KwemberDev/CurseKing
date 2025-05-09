@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "active=false": { "model": "curseking:crystalline_purifier" },
+    "active=true":  { "model": "curseking:crystalline_purifier_active" }
+  }
+}

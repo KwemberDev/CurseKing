@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"textures":{
+		"0": "curseking:blocks/crossbase",
+		"particle": "curseking:blocks/crossbase"
+	},
+	"elements": [
+		{
+			"from": [-5.3, -0.5, 4],
+			"to": [2.7, 15.5, 12],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [-5.3, 9.5, 4]},
+			"color": 5,
+			"faces": {
+				"north": {"uv": [0, 0, 8, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 8, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 8, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 8, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"down": {"uv": [0, 0, 8, 8], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "curseking.mixin",
+  "refmap": "curseking.refmap.json",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+    "MixinGuiIngame"
+  ],
+  "injectors": {
+    "maxShiftBy": 10,
+    "defaultRequire": 1
+  }
+}

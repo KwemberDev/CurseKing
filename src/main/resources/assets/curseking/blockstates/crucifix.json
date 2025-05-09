@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north,half=lower,variant=upright": { "model": "curseking:crossbottom", "y": 180 },
+    "facing=south,half=lower,variant=upright": { "model": "curseking:crossbottom", "y": 0 },
+    "facing=west,half=lower,variant=upright":  { "model": "curseking:crossbottom", "y": 90 },
+    "facing=east,half=lower,variant=upright":  { "model": "curseking:crossbottom", "y": 270 },
+    "facing=north,half=upper,variant=upright": { "model": "curseking:crosstop", "y": 180 },
+    "facing=south,half=upper,variant=upright": { "model": "curseking:crosstop", "y": 0 },
+    "facing=west,half=upper,variant=upright":  { "model": "curseking:crosstop", "y": 90 },
+    "facing=east,half=upper,variant=upright":  { "model": "curseking:crosstop", "y": 270 },
+    "facing=north,half=lower,variant=slanted": { "model": "curseking:crossbottomslanted", "y": 180 },
+    "facing=south,half=lower,variant=slanted": { "model": "curseking:crossbottomslanted", "y": 0 },
+    "facing=west,half=lower,variant=slanted":  { "model": "curseking:crossbottomslanted", "y": 90 },
+    "facing=east,half=lower,variant=slanted":  { "model": "curseking:crossbottomslanted", "y": 270 },
+    "facing=north,half=upper,variant=slanted": { "model": "curseking:crosstopslanted", "y": 180 },
+    "facing=south,half=upper,variant=slanted": { "model": "curseking:crosstopslanted", "y": 0 },
+    "facing=west,half=upper,variant=slanted":  { "model": "curseking:crosstopslanted", "y": 90 },
+    "facing=east,half=upper,variant=slanted":  { "model": "curseking:crosstopslanted", "y": 270 }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "curseking:blocks/purifieractive",
+    "up": "curseking:blocks/purifieractive",
+    "north": "curseking:blocks/purifieractive",
+    "south": "curseking:blocks/purifieractive",
+    "west": "curseking:blocks/purifieractive",
+    "east": "curseking:blocks/purifieractive",
+    "normal": "curseking:blocks/purifieractive",
+    "particle": "curseking:blocks/purifieractive"
+  }
+}

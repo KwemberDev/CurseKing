@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AGA",
+    "AGA",
+    "AGA"
+  ],
+  "key": {
+    "G": { "item": "minecraft:gold_ingot" },
+    "A": { "item": "curseking:ashes" }
+  },
+  "result": {
+    "item": "curseking:summonflute",
+    "count": 1
+  }
+}

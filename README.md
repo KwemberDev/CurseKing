@@ -1,0 +1,1 @@
+A small Mixin-type mod to backport sneaking through 1.5 block tall spaces from minecraft 1.13 and higher versions.
