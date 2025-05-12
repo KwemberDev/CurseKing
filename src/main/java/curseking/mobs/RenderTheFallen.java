@@ -13,6 +13,6 @@ public class RenderTheFallen extends RenderLiving<EntityTheFallen> {
 
     @Override
     protected ResourceLocation getEntityTexture(EntityTheFallen entity) {
-        return new ResourceLocation(MODID, "textures/entity/the_fallen.png");
+        return new ResourceLocation(MODID, "textures/entities/fallen.png");
     }
 }

@@ -8,7 +8,7 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class TheFallen extends ModelBase {
+public class Fallen extends ModelBase {
 	private final ModelRenderer bone;
 	private final ModelRenderer body;
 	private final ModelRenderer upper_body;
@@ -44,7 +44,7 @@ public class TheFallen extends ModelBase {
 	private final ModelRenderer leg_right;
 	private final ModelRenderer leg_left;
 
-	public TheFallen() {
+	public Fallen() {
 		textureWidth = 128;
 		textureHeight = 128;
 
@@ -124,7 +124,6 @@ public class TheFallen extends ModelBase {
 		elbow_right = new ModelRenderer(this);
 		elbow_right.setRotationPoint(-9.0F, 2.5F, 2.0F);
 		arm_right.addChild(elbow_right);
-		setRotationAngle(elbow_right, 0.0F, -0.2618F, 0.0F);
 		
 
 		cube_r1 = new ModelRenderer(this);
@@ -142,7 +141,7 @@ public class TheFallen extends ModelBase {
 		hand_right = new ModelRenderer(this);
 		hand_right.setRotationPoint(0.0F, 0.0F, -2.0F);
 		elbow_right.addChild(hand_right);
-		hand_right.cubeList.add(new ModelBox(hand_right, 0, 79, -14.0F, -4.0F, -3.0F, 4, 4, 6, 0.0F, false));
+		hand_right.cubeList.add(new ModelBox(hand_right, 0, 79, -14.0F, -5.0F, -3.0F, 4, 5, 6, 0.0F, false));
 
 		staff = new ModelRenderer(this);
 		staff.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -158,7 +157,6 @@ public class TheFallen extends ModelBase {
 		elbow_left = new ModelRenderer(this);
 		elbow_left.setRotationPoint(9.0F, 2.5F, 2.0F);
 		arm_left.addChild(elbow_left);
-		setRotationAngle(elbow_left, 0.0F, 0.2618F, 0.0F);
 		
 
 		cube_r3 = new ModelRenderer(this);
@@ -176,7 +174,7 @@ public class TheFallen extends ModelBase {
 		hand_left = new ModelRenderer(this);
 		hand_left.setRotationPoint(0.0F, 0.0F, -2.0F);
 		elbow_left.addChild(hand_left);
-		hand_left.cubeList.add(new ModelBox(hand_left, 0, 79, 10.0F, -4.0F, -3.0F, 4, 4, 6, 0.0F, true));
+		hand_left.cubeList.add(new ModelBox(hand_left, 0, 79, 10.0F, -5.0F, -3.0F, 4, 5, 6, 0.0F, true));
 
 		legs = new ModelRenderer(this);
 		legs.setRotationPoint(0.0F, 4.0F, 0.0F);

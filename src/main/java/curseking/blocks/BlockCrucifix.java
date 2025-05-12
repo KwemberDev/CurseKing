@@ -47,7 +47,6 @@ public class BlockCrucifix extends Block {
         setSoundType(SoundType.METAL);
     }
 
-
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;

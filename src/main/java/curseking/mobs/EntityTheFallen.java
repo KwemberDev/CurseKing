@@ -3,6 +3,7 @@ package curseking.mobs;
 import curseking.biome.BiomeRegistry;
 import curseking.config.CurseKingConfig;
 import curseking.mobs.AIHelper.EntityAIStayInBiome;
+import curseking.proxy.ModSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -13,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import static curseking.CurseKing.MODID;
 
@@ -20,7 +22,7 @@ public class EntityTheFallen extends EntityMob {
 
     public EntityTheFallen(World worldIn) {
         super(worldIn);
-        this.setSize(0.9F, 3.98F);
+        this.setSize(0.95F, 3.2F);
         this.experienceValue = 10;
         this.isImmuneToFire = false;
         this.enablePersistence();
@@ -49,7 +51,7 @@ public class EntityTheFallen extends EntityMob {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_WITHER_AMBIENT;
+        return ModSounds.FALLEN_AMBIENT;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class EntityTheFallen extends EntityMob {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_WITHER_DEATH;
+        return ModSounds.FALLEN_DYING;
     }
 
     @Override
@@ -73,4 +75,11 @@ public class EntityTheFallen extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(4.0D);
     }
+
+    @Override
+    public int getTalkInterval()
+    {
+        return 300;
+    }
+
 }

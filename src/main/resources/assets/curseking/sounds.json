@@ -1,0 +1,8 @@
+{
+  "entity.the_fallen.ambient": {
+    "sounds": ["curseking:fallenambient"]
+  },
+  "entity.the_fallen.death": {
+    "sounds": ["curseking:fallendying"]
+  }
+}
