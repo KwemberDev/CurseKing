@@ -6,6 +6,10 @@ buildscript {
         maven {
             url = 'https://repo.spongepowered.org/maven'
         }
+        maven {
+            name = 'GeckoLib'
+            url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        }
         mavenCentral()
     }
     dependencies {
@@ -78,8 +82,7 @@ dependencies {
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     testAnnotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     implementation "io.github.llamalad7:mixinextras-common:0.3.6"
-    annotationProcessor "io.github.llamalad7:mixinextras-common:0.3.6"
-}
+    annotationProcessor "io.github.llamalad7:mixinextras-common:0.3.6"}
 
 processResources {
     inputs.property "version", project.version

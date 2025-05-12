@@ -68,7 +68,7 @@ public class SmallCrucifix extends Block {
 
         if (placer != null) {
             variant = placer.isSneaking() ? SmallCrucifix.EnumVariant.SLANTED : SmallCrucifix.EnumVariant.UPRIGHT;
-            facing = placer.getHorizontalFacing().getOpposite();
+            facing = placer.getHorizontalFacing();
         } else {
             boolean var = random.nextBoolean();
             variant = var ? SmallCrucifix.EnumVariant.UPRIGHT : SmallCrucifix.EnumVariant.SLANTED;
