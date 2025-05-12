@@ -1,6 +1,7 @@
 package curseking.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,6 +18,7 @@ public class GraveSoil extends Block {
         setRegistryName("gravesoil");
         setHardness(0.5F);
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setSoundType(SoundType.GROUND);
     }
 
     @SideOnly(Side.CLIENT)

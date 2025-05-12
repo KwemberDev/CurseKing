@@ -89,8 +89,8 @@ public class CommonProxy {
         event.getRegistry().register(STONE_OF_DECAY);
         event.getRegistry().register(STONE_OF_SLOWNESS);
         event.getRegistry().register(STONE_OF_SATIETY);
-        event.getRegistry().register(STONE_OF_NIMBLE);
         event.getRegistry().register(STONE_OF_IRON_SKIN);
+        event.getRegistry().register(STONE_OF_NIMBLE);
         event.getRegistry().register(ASHES_OF_DIVINITY);
         event.getRegistry().register(SHATTERED_PURITY);
         event.getRegistry().register(FLUTE);

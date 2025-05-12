@@ -1,6 +1,7 @@
 package curseking.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -34,8 +35,10 @@ public class SmallCrucifix extends Block {
         super(Material.ANVIL);
         setTranslationKey("smallcrucifix");
         setRegistryName("smallcrucifix");
-        setHardness(1.5F);
+        setHardness(2.0F);
+        setResistance(5.0F);
         setCreativeTab(CreativeTabs.DECORATIONS);
+        setSoundType(SoundType.METAL);
     }
 
     @SideOnly(Side.CLIENT)
@@ -103,7 +106,7 @@ public class SmallCrucifix extends Block {
         switch (facing) {
             case NORTH:
             case SOUTH:
-                return new AxisAlignedBB(0, 0, 0.4, 1, 1, 0.6);
+                return new AxisAlignedBB(0, 0, 0.4, 1, 0.999, 0.6);
             case WEST:
             case EAST:
                 return new AxisAlignedBB(0.4, 0, 0, 0.6, 1, 1);

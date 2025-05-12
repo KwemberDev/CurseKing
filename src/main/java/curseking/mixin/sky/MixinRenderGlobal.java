@@ -37,7 +37,7 @@ public abstract class MixinRenderGlobal {
         if (player != null && player.world != null) {
             Biome biome = player.world.getBiome(player.getPosition());
             if (biome instanceof BiomeGraveForgottenDeity) {
-                manager.bindTexture(new ResourceLocation("curseking:textures/environment/newsun.png"));
+                manager.bindTexture(new ResourceLocation("curseking:textures/environment/newsun2.png"));
                 return;
             }
         }

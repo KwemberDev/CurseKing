@@ -2,6 +2,7 @@ package curseking.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -30,8 +31,11 @@ public class BlockCrucifix extends Block {
 
     public static final PropertyEnum<BlockDoor.EnumDoorHalf> HALF = PropertyEnum.create("half", BlockDoor.EnumDoorHalf.class);
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    private Random random = new Random();
-
+    private final Random random = new Random();
+    private static final AxisAlignedBB UPRIGHT_BOTTOM_AABB = new AxisAlignedBB((double) 4 / 16, (double) 0, (double) 4 / 16, (double) 12 / 16, (double) 1, (double) 12 / 16);
+    private static final AxisAlignedBB UPRIGHT_TOP_AABB = new AxisAlignedBB((double) 4 / 16, (double) 0, (double) 4 / 16, (double) 12 / 16, (double) 2, (double) 12 / 16);
+    private static final AxisAlignedBB SLANTED_BOTTOM_AABB = new AxisAlignedBB((double) 0, (double) 0, (double) 4 / 16, (double) 1, (double) 1, (double) 12 / 16);
+    private static final AxisAlignedBB SLANTED_TOP_AABB = new AxisAlignedBB((double) 0, (double) 0, (double) 4 / 16, (double) 1, (double) 2, (double) 12 / 16);
 
     public BlockCrucifix() {
         super(Material.WOOD);
@@ -40,6 +44,7 @@ public class BlockCrucifix extends Block {
         setHardness(2.0F);
         setResistance(5.0F);
         setCreativeTab(CreativeTabs.DECORATIONS);
+        setSoundType(SoundType.METAL);
     }
 
 
@@ -112,7 +117,40 @@ public class BlockCrucifix extends Block {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return FULL_BLOCK_AABB;
+        boolean isTop = state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER;
+        boolean isSlanted = state.getValue(VARIANT) == EnumVariant.SLANTED;
+        EnumFacing facing = state.getValue(FACING);
+
+        AxisAlignedBB baseAABB = isTop
+                ? SLANTED_TOP_AABB
+                : SLANTED_BOTTOM_AABB;
+
+        if (!isSlanted) {
+            return isTop ? UPRIGHT_TOP_AABB : UPRIGHT_BOTTOM_AABB;
+        }
+
+        // Rotate the AABB based on facing
+        switch (facing) {
+            case NORTH:
+                return baseAABB;
+            case SOUTH:
+                return new AxisAlignedBB(
+                        1 - baseAABB.maxX, baseAABB.minY, 1 - baseAABB.maxZ,
+                        1 - baseAABB.minX, baseAABB.maxY, 1 - baseAABB.minZ
+                );
+            case WEST:
+                return new AxisAlignedBB(
+                        baseAABB.minZ, baseAABB.minY, 1 - baseAABB.maxX,
+                        baseAABB.maxZ, baseAABB.maxY, 1 - baseAABB.minX
+                );
+            case EAST:
+                return new AxisAlignedBB(
+                        1 - baseAABB.maxZ, baseAABB.minY, baseAABB.minX,
+                        1 - baseAABB.minZ, baseAABB.maxY, baseAABB.maxX
+                );
+            default:
+                return baseAABB;
+        }
     }
 
     @Override
