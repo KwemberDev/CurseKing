@@ -12,10 +12,10 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @Mod.EventBusSubscriber
 public class WeatherEventHandler {
     private static final int WEATHER_RADIUS = 64;
-    private boolean isForcingRain = false;
+    private static boolean isForcingRain = false;
 
     @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.player.world.isRemote) return;
         if (!(event.player instanceof EntityPlayerMP)) return;
 

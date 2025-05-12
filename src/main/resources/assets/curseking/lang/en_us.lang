@@ -1,10 +1,10 @@
-item.curseking.stone_of_hunger.name=§cStone of Hunger
-item.curseking.stone_of_decay.name=§cStone of Decay
-item.curseking.stone_of_slowness.name=§cStone of Slowness
-item.curseking.neutral_divinity_stone.name=§bStone of Neutral Divinity
-item.curseking.stone_of_satiety.name=§bStone of Satiety
-item.curseking.stone_of_nimble.name=§bStone of Nimble
-item.curseking.stone_of_ironskin.name=§bStone of Iron Skin
+item.curseking.stone_of_hunger.name=§cRune of Starving
+item.curseking.stone_of_decay.name=§cRune of Decay
+item.curseking.stone_of_slowness.name=§cRune of Sloth
+item.curseking.neutral_divinity_stone.name=§bEmpty Rune
+item.curseking.stone_of_satiety.name=§bRune of Satiety
+item.curseking.stone_of_nimble.name=§bRune of Nimble
+item.curseking.stone_of_ironskin.name=§bRune of Iron Skin
 item.curseking.ashes.name=§7Ashes of Divinity
 tile.crystalline_purifier.name=Crystalline Purifier
 item.curseking.purity.name=§bShattered Purity

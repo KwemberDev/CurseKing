@@ -7,9 +7,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModItems {
 
     public static final ItemNeutralDivinityStone NEUTRAL_DIVINITY_STONE = new ItemNeutralDivinityStone();
-    public static final BasicModItem STONE_OF_HUNGER = new BasicModItem("stone_of_hunger", "A stone imbued with a stolen divinity," , "containing the Curse of Hunger.");
-    public static final BasicModItem STONE_OF_DECAY = new BasicModItem("stone_of_decay", "A stone imbued with a stolen divinity," , "containing the Curse of Decay.");
-    public static final BasicModItem STONE_OF_SLOWNESS = new BasicModItem("stone_of_slowness", "A stone imbued with a stolen divinity," , "containing the Curse of Slowness");
+    public static final BasicModItem STONE_OF_HUNGER = new BasicModItem("stone_of_hunger", "A stone imbued with a stolen divinity," , "containing a curse.");
+    public static final BasicModItem STONE_OF_DECAY = new BasicModItem("stone_of_decay", "A stone imbued with a stolen divinity," , "containing a curse.");
+    public static final BasicModItem STONE_OF_SLOWNESS = new BasicModItem("stone_of_slowness", "A stone imbued with a stolen divinity," , "containing a curse.");
     public static final ItemStoneOfSatiety STONE_OF_SATIETY = new ItemStoneOfSatiety();
     public static final ItemStoneOfNimble STONE_OF_NIMBLE = new ItemStoneOfNimble();
     public static final ItemStoneOfIronSkin STONE_OF_IRON_SKIN = new ItemStoneOfIronSkin();

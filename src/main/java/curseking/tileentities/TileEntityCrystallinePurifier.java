@@ -75,21 +75,10 @@ public class TileEntityCrystallinePurifier extends TileEntity implements IInvent
         if (currentState.getBlock() instanceof CrystallinePurifierBlock) {
             if (currentState.getValue(CrystallinePurifierBlock.ACTIVE) != currentlyActive) {
                 if (!world.isRemote) {
-
-                    TileEntity te = world.getTileEntity(pos);
-                    IBlockState newState = currentState.withProperty(CrystallinePurifierBlock.ACTIVE, currentlyActive);
-
-                    if (currentState != newState) {
-                        world.setBlockState(pos, newState, 3);
-                        if (te != null) {
-                            te.validate();
-                            world.setTileEntity(pos, te);
-                        }
-                    }
+                    ((CrystallinePurifierBlock) currentState.getBlock()).setActive(world, pos, currentlyActive);
                 }
             }
         }
-
     }
 
     private boolean canPurify() {
@@ -131,7 +120,9 @@ public class TileEntityCrystallinePurifier extends TileEntity implements IInvent
     }
 
     private boolean isCursedStone(ItemStack stack) {
-        return stack.getItem() == ModItems.STONE_OF_DECAY;
+        return stack.getItem() == ModItems.STONE_OF_DECAY ||
+                stack.getItem() == ModItems.STONE_OF_HUNGER ||
+                stack.getItem() == ModItems.STONE_OF_SLOWNESS;
     }
 
     private boolean isCoal(ItemStack stack) {
@@ -143,9 +134,16 @@ public class TileEntityCrystallinePurifier extends TileEntity implements IInvent
     }
 
     private ItemStack getBlessedStone(ItemStack cursedStone) {
-        return new ItemStack(ModItems.STONE_OF_IRON_SKIN);
+        if (cursedStone.getItem().equals(ModItems.STONE_OF_DECAY)) {
+            return new ItemStack(ModItems.STONE_OF_IRON_SKIN);
+        } else if (cursedStone.getItem().equals(ModItems.STONE_OF_HUNGER)) {
+            return new ItemStack(ModItems.STONE_OF_SATIETY);
+        } else if (cursedStone.getItem().equals(ModItems.STONE_OF_SLOWNESS)) {
+            return new ItemStack(ModItems.STONE_OF_NIMBLE);
+        }
+        return ItemStack.EMPTY;
+        // fuck intellij switch casting dumb ahh type error
     }
-
 
     @Override
     public int getSizeInventory() {

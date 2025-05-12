@@ -15,6 +15,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -52,8 +53,11 @@ public class ItemFlute extends Item {
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase player, int timeLeft) {
         int useDuration = this.getMaxItemUseDuration(stack) - timeLeft;
-        if (useDuration >= 60) {
-            if (!world.isRemote) {
+        if (useDuration >= 60 && !world.isRemote) {
+            BlockPos pos = new BlockPos(player);
+            String biomeName = world.getBiome(pos).getRegistryName().getPath();
+            // Check for beach or ocean/water biomes
+            if (biomeName.contains("beach") || biomeName.contains("ocean") || world.isRaining()) {
                 boolean found = false;
                 double px = player.posX;
                 double py = player.posY;
@@ -73,9 +77,12 @@ public class ItemFlute extends Item {
                         world.spawnEntity(boss);
                         EntityLightningBolt lightning = new EntityLightningBolt(world, x, y, z, true);
                         world.addWeatherEffect(lightning);
+                        stack.shrink(1); // Consume the flute
                         found = true;
                     }
                 }
+            } else {
+                ((EntityPlayer) player).sendStatusMessage(new TextComponentString(TextFormatting.GRAY + "None respond to the flutes music..."), true);
             }
         }
     }

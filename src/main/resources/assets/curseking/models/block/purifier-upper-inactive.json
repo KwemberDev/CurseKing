@@ -1,0 +1,35 @@
+{
+	"credit": "Made by Foreck with Blockbench",
+	"textures": {
+		"0": "curseking:blocks/purifier_upper_side",
+		"1": "curseking:blocks/purifier_upper_inactive_top",
+		"2": "curseking:blocks/purifier_bottom_inactive",
+		"particle": "curseking:blocks/purifier_upper_side"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 1],
+			"to": [15, 4, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 1]},
+			"faces": {
+				"north": {"uv": [1, 4, 15, 8], "texture": "#0"},
+				"east": {"uv": [1, 4, 15, 8], "texture": "#0"},
+				"south": {"uv": [1, 4, 15, 8], "texture": "#0"},
+				"west": {"uv": [1, 4, 15, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 4, 0],
+			"to": [16, 8, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 2, 1]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 4], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [8, 8, 16, 16], "texture": "#2"}
+			}
+		}
+	]
+}

@@ -1,6 +1,23 @@
 {
   "variants": {
-    "active=false": { "model": "curseking:crystalline_purifier" },
-    "active=true":  { "model": "curseking:crystalline_purifier_active" }
+    "active=false,facing=north,half=lower": { "model": "curseking:purifier-bottom-inactive", "y": 180 },
+    "active=false,facing=south,half=lower": { "model": "curseking:purifier-bottom-inactive" },
+    "active=false,facing=west,half=lower":  { "model": "curseking:purifier-bottom-inactive", "y": 90 },
+    "active=false,facing=east,half=lower":  { "model": "curseking:purifier-bottom-inactive", "y": 270 },
+
+    "active=true,facing=north,half=lower": { "model": "curseking:purifier-bottom-active", "y": 180 },
+    "active=true,facing=south,half=lower": { "model": "curseking:purifier-bottom-active" },
+    "active=true,facing=west,half=lower":  { "model": "curseking:purifier-bottom-active", "y": 90 },
+    "active=true,facing=east,half=lower":  { "model": "curseking:purifier-bottom-active", "y": 270 },
+
+    "active=false,facing=north,half=upper": { "model": "curseking:purifier-upper-inactive", "y": 180 },
+    "active=false,facing=south,half=upper": { "model": "curseking:purifier-upper-inactive" },
+    "active=false,facing=west,half=upper":  { "model": "curseking:purifier-upper-inactive", "y": 90 },
+    "active=false,facing=east,half=upper":  { "model": "curseking:purifier-upper-inactive", "y": 270 },
+
+    "active=true,facing=north,half=upper": { "model": "curseking:purifier-upper-active", "y": 180 },
+    "active=true,facing=south,half=upper": { "model": "curseking:purifier-upper-active" },
+    "active=true,facing=west,half=upper":  { "model": "curseking:purifier-upper-active", "y": 90 },
+    "active=true,facing=east,half=upper":  { "model": "curseking:purifier-upper-active", "y": 270 }
   }
 }
