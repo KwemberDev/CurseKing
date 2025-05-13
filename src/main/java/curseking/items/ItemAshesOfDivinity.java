@@ -21,7 +21,7 @@ public class ItemAshesOfDivinity extends Item {
         this.setMaxStackSize(64);
         this.setRegistryName("ashes");
         this.setTranslationKey(CurseKing.MODID + ".ashes");
-        this.setCreativeTab(CreativeTabs.MATERIALS);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
     }
 
     @SideOnly(Side.CLIENT)

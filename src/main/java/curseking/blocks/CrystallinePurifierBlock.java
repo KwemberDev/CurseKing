@@ -37,7 +37,7 @@ public class CrystallinePurifierBlock extends Block implements ITileEntityProvid
         setTranslationKey("crystalline_purifier");
         setRegistryName("crystalline_purifier");
         setHardness(3.5F);
-        setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setDefaultState(this.blockState.getBaseState()
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(HALF, EnumBlockHalf.LOWER)

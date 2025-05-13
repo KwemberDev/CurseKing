@@ -73,16 +73,16 @@ public class CurseKingConfig {
         public BossStats aquaRegiusBossStats = new BossStats();
 
         @Config.Name("The Fallen Health")
-        public float TheFallenHealth = 60F;
+        public float TheFallenHealth = 100F;
 
         @Config.Name("The Fallen Movement Speed")
         public float TheFallenMovementSpeed = 0.33F;
 
         @Config.Name("The Fallen Attack Damage")
-        public float TheFallenAttackDamage = 8F;
+        public float TheFallenAttackDamage = 30F;
 
         @Config.Name("The Fallen Spawn Chance")
-        public int TheFallenSpawnWeight = 50;
+        public int TheFallenSpawnWeight = 5;
 
     }
 

@@ -93,7 +93,7 @@ public abstract class MixinRenderGlobal {
                 double py = dy * 100.0D;
                 double pz = dz * 100.0D;
 
-                double baseSize = 10.0D;
+                double baseSize = 4.0D;
                 double sizeVariation = 12.0D;
                 double size = baseSize + ((rand.nextDouble() - 0.5D) * sizeVariation);
 

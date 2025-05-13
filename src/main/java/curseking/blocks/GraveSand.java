@@ -1,5 +1,6 @@
 package curseking.blocks;
 
+import curseking.CurseKing;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,7 +18,7 @@ public class GraveSand extends BlockFalling {
         setTranslationKey("gravesand");
         setRegistryName("gravesand");
         setHardness(0.5F);
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setSoundType(SoundType.SAND);
     }
 

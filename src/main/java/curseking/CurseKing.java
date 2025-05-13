@@ -5,10 +5,12 @@ import curseking.command.CommandBless;
 import curseking.command.CommandCurse;
 import curseking.command.CommandFindForgottenDeityBiome;
 import curseking.command.CommandMobStats;
+import curseking.creativetabs.CurseKingCreativeTab;
 import curseking.eventhandlers.mobeventhandlers.MobEventHandler;
 import curseking.eventhandlers.mobeventhandlers.WeatherEventHandler;
 import curseking.network.CurseSyncPacket;
 import curseking.proxy.CommonProxy;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -37,6 +39,8 @@ public class CurseKing {
     public static Logger logger;
 
     public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel("curseking");
+
+    public static final CreativeTabs CURSEKING_TAB = new CurseKingCreativeTab();
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

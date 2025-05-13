@@ -1,5 +1,6 @@
 package curseking.blocks;
 
+import curseking.CurseKing;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -37,7 +38,7 @@ public class SmallCrucifix extends Block {
         setRegistryName("smallcrucifix");
         setHardness(2.0F);
         setResistance(5.0F);
-        setCreativeTab(CreativeTabs.DECORATIONS);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setSoundType(SoundType.METAL);
     }
 

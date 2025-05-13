@@ -98,7 +98,6 @@ public class MobEventHandler {
                         1.0F, // volume
                         0.5F  // pitch
                 );
-                player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "You have been cursed!"), true);
             }
         }
     }

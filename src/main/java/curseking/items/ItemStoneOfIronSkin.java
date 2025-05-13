@@ -29,7 +29,7 @@ public class ItemStoneOfIronSkin extends Item {
     public ItemStoneOfIronSkin() {
         setRegistryName("stone_of_ironskin");
         setTranslationKey(CurseKing.MODID + ".stone_of_ironskin");
-        setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setMaxStackSize(1);
     }
 

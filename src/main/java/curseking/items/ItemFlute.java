@@ -29,7 +29,7 @@ public class ItemFlute extends Item {
 
     public ItemFlute() {
         this.setMaxStackSize(1);
-        this.setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         this.setTranslationKey(CurseKing.MODID + "flute");
         this.setRegistryName("summonflute");
     }

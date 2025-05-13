@@ -1,24 +1,57 @@
 package curseking.mobs;
 
+import curseking.CurseKing;
 import curseking.biome.BiomeRegistry;
 import curseking.config.CurseKingConfig;
 import curseking.mobs.AIHelper.EntityAIStayInBiome;
 import curseking.proxy.ModSounds;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import static curseking.CurseKing.MODID;
 
-public class EntityTheFallen extends EntityMob {
+public class EntityTheFallen extends EntityMob implements IAnimatable {
+
+    private final AnimationFactory factory = new AnimationFactory(this);
+
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityTheFallen.class, DataSerializers.BOOLEAN);
+
+    public boolean isAttacking() { return this.dataManager.get(ATTACKING); }
+    public void setAttacking(boolean attacking) { this.dataManager.set(ATTACKING, attacking); }
+
+
+    public void startAttackAnimation() {
+        CurseKing.logger.debug("SETTING ATTACK TO TRUE.");
+        this.setAttacking(true);
+        AnimationController<?> controller = this.getFactory()
+                .getOrCreateAnimationData(0)
+                .getAnimationControllers()
+                .get("controller");
+        if (controller != null) controller.markNeedsReload();
+    }
 
     public EntityTheFallen(World worldIn) {
         super(worldIn);
@@ -28,20 +61,31 @@ public class EntityTheFallen extends EntityMob {
         this.enablePersistence();
     }
 
+    public void doMeleeAttack(EntityLivingBase target) {
+        target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue());
+    }
+
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.2D, true));
-        this.tasks.addTask(3, new EntityAIStayInBiome(this, BiomeRegistry.Grave, 1D));
-        this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
-        this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.tasks.addTask(2, new curseking.mobs.AIHelper.EntityAIFallenAttack(this));
+        this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.5D));
+        this.tasks.addTask(6, new EntityAIStayInBiome(this, BiomeRegistry.Grave, 1D));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 20, true, true, this::shouldAttackTarget));
     }
 
     private boolean shouldAttackTarget(EntityLivingBase target) {
-        return !(target.isEntityUndead() || target instanceof EntityTheFallen);
+        return !(target instanceof EntityTheFallen);
+    }
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(ATTACKING, false);
     }
 
     @Override
@@ -82,4 +126,26 @@ public class EntityTheFallen extends EntityMob {
         return 300;
     }
 
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        CurseKing.logger.debug(isAttacking());
+        if (isAttacking()) {
+            CurseKing.logger.debug("SETTING ATTACK ANIMATION.");
+            event.getController().setAnimationSpeed(1.3D);
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.attack", false));
+        } else {
+            event.getController().clearAnimationCache();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.idle", true));
+        }
+        return PlayState.CONTINUE;
+    }
 }

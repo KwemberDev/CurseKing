@@ -29,7 +29,7 @@ public class ItemStoneOfSatiety extends Item {
     public ItemStoneOfSatiety() {
         setRegistryName("stone_of_satiety");
         setTranslationKey(CurseKing.MODID + ".stone_of_satiety");
-        setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setMaxStackSize(1);
     }
 

@@ -34,7 +34,7 @@ public class ItemNeutralDivinityStone extends Item {
         setMaxStackSize(1);
         setTranslationKey(CurseKing.MODID + "." + "neutral_divinity_stone");
         setRegistryName("neutral_divinity_stone");
-        setCreativeTab(CreativeTabs.MATERIALS);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
     }
 
     @Override

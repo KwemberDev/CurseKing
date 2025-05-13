@@ -22,7 +22,7 @@ public class BasicModItem extends Item {
     public BasicModItem(String name, String... loreLines) {
         setTranslationKey(CurseKing.MODID + "." + name);
         setRegistryName(name);
-        setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setMaxStackSize(1);
         this.loreLines = loreLines;
     }

@@ -13,7 +13,7 @@ public class ItemShatteredPurity extends Item {
     public ItemShatteredPurity() {
         this.setRegistryName("purity");
         this.setTranslationKey(CurseKing.MODID + ".purity");
-        this.setCreativeTab(CreativeTabs.MATERIALS);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         this.setMaxStackSize(16);
     }
 

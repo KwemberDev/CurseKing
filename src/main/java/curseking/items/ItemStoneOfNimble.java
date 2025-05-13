@@ -29,7 +29,7 @@ public class ItemStoneOfNimble extends Item {
     public ItemStoneOfNimble() {
         setRegistryName("stone_of_nimble");
         setTranslationKey(CurseKing.MODID + ".stone_of_nimble");
-        setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(CurseKing.CURSEKING_TAB);
         setMaxStackSize(1);
     }
 
