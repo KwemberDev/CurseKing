@@ -4,6 +4,8 @@ import curseking.ModBlocks;
 import curseking.ModItems;
 import curseking.mobs.EntityAquaRegia;
 import curseking.mobs.EntityTheFallen;
+import curseking.mobs.helperentities.EntityWhirl;
+import curseking.mobs.projectiles.renderer.RenderWhirl;
 import curseking.mobs.renderers.RenderAquaRegia;
 import curseking.mobs.renderers.RenderTheFallen;
 import curseking.mobs.projectiles.EntityLightningOrb;
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityWaterProjectile.class, RenderOrb::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWaterProjectileGravity.class, RenderOrbGravity::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityLightningOrb.class, RenderOrbLightning::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWhirl.class, RenderWhirl::new);
     }
 
     @Override

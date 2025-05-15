@@ -2,6 +2,7 @@ package curseking.mobs.AIHelper;
 
 import curseking.config.CurseKingConfig;
 import curseking.mobs.EntityAquaRegia;
+import curseking.mobs.helperentities.EntityWhirl;
 import curseking.mobs.projectiles.EntityLightningOrb;
 import curseking.mobs.projectiles.EntityWaterProjectile;
 import curseking.mobs.projectiles.EntityWaterProjectileGravity;
@@ -26,8 +27,7 @@ public class EntityAIAquaRegiaAttack extends EntityAIBase {
     private int spiralStep = 0;
     private boolean isPerformingSpiral = false;
 
-    private boolean isPerformingSpam = false;
-    private int spamStep = 0;
+    private int spamTick = 0;
 
     private enum State {
         MOVING,
@@ -82,90 +82,83 @@ public class EntityAIAquaRegiaAttack extends EntityAIBase {
                     World world = entity.world;
                     Random rand = entity.getRNG();
 
-                    if (!world.isRemote) {
-                        if (rand.nextFloat() > 0.25 && !isPerformingSpiral && !isPerformingSpam) { // 0.25
-                            for (int i = 0; i < 5; i++) {
-                                EntityLightningOrb orb = new EntityLightningOrb(world, entity);
-                                double dx = target.posX - entity.posX;
-                                double dy = target.posY + target.getEyeHeight() - orb.posY;
-                                double dz = target.posZ - entity.posZ;
-                                orb.shoot(dx, dy, dz, 1.4F, 15F);
+                    if (rand.nextFloat() > 0.15 && !isPerformingSpiral) { // 0.25
+                        for (int i = 0; i < 5; i++) {
+                            EntityLightningOrb orb = new EntityLightningOrb(world, entity);
+                            double dx = target.posX - entity.posX;
+                            double dy = target.posY + target.getEyeHeight() - orb.posY;
+                            double dz = target.posZ - entity.posZ;
+                            orb.shoot(dx, dy, dz, 1.4F, 15F);
 
-                                float horizMag = (float) Math.sqrt(dx * dx + dz * dz);
-                                float yaw = (float) (Math.atan2(dz, dx) * (180D / Math.PI)) - 90F;
-                                float pitch = (float) (-Math.atan2(dy, horizMag) * (180D / Math.PI)) - 20F;
-                                orb.rotationYaw = yaw;
-                                orb.rotationPitch = pitch;
-                                orb.prevRotationYaw = yaw;
-                                orb.prevRotationPitch = pitch;
+                            float horizMag = (float) Math.sqrt(dx * dx + dz * dz);
+                            float yaw = (float) (Math.atan2(dz, dx) * (180D / Math.PI)) - 90F;
+                            float pitch = (float) (-Math.atan2(dy, horizMag) * (180D / Math.PI)) - 20F;
+                            orb.rotationYaw = yaw;
+                            orb.rotationPitch = pitch;
+                            orb.prevRotationYaw = yaw;
+                            orb.prevRotationPitch = pitch;
 
-                                world.spawnEntity(orb);
-                                stateTimer--;
+                            world.spawnEntity(orb);
+                            stateTimer--;
+                        }
+                    } else if (((rand.nextFloat() > 0.40 && !isPerformingSpiral)) && (entity.ticksExisted - spamTick > 100)) {
+                        this.spamTick = entity.ticksExisted;
+                        int numWhirls = 5 + rand.nextInt(5); // 4 to 6
+                        for (int i = 0; i < numWhirls; i++) {
+                            double vx = (rand.nextDouble() - 0.5); // -0.3 to 0.3
+                            double vz = (rand.nextDouble() - 0.5); // -0.3 to 0.3
+                            double vy = -0.1 - rand.nextDouble() * 0.2;  // -0.1 to -0.3 (downward)
+
+                            EntityWhirl whirl = new EntityWhirl(
+                                    world,
+                                    entity.posX,
+                                    entity.posY + entity.height * 0.7,
+                                    entity.posZ,
+                                    vx, vy, vz
+                            );
+                            world.spawnEntity(whirl);
+                        }
+                        stateTimer--;
+                    } else {
+                        isPerformingSpiral = true;
+                        this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0F);
+                        if (spiralStep < 300) {
+                            for (int i = 0; i < 4; i++) {
+                                double angle = spiralStep * Math.PI / 10;
+                                double radius = 1.5 + 0.05 * spiralStep;
+                                double offsetX = Math.cos(angle) * radius;
+                                double offsetZ = Math.sin(angle) * radius;
+
+                                float extraOffsetX = (rand.nextFloat() * 2) - 1.0F;
+                                float extraOffsetZ = (rand.nextFloat() * 2) - 1.0F;
+                                float extraOffsetY = (rand.nextFloat() * 2) - 1.0F;
+
+                                EntityWaterProjectile projectile = new EntityWaterProjectile(world, entity);
+                                projectile.setPositionAndRotation(entity.posX + offsetX + extraOffsetX,
+                                        entity.posY + 15.0D + extraOffsetY,
+                                        entity.posZ + offsetZ + extraOffsetZ, 0, 90);
+                                world.spawnEntity(projectile);
+
+                                spawnWater(EnumParticleTypes.DRIP_WATER, world,
+                                        entity.posX + offsetX, entity.posY + 5.0D, entity.posZ + offsetZ,
+                                        0.0D, 0.0D, 0.0D);
+                                spiralStep++;
                             }
-                        } else if ((rand.nextFloat() > 0.40 && !isPerformingSpiral) || isPerformingSpam) { // 0.5
-                            // NEW: Water Orb Arch Attack
-                            isPerformingSpam = true;
-                            if (spamStep < 2) {
-                                int numProjectiles = 100 + rand.nextInt(30);
-                                for (int i = 0; i < numProjectiles; i++) {
-                                    double angle = rand.nextDouble() * 2 * Math.PI;
-                                    double speed = 0.3 + rand.nextDouble() * 0.8;
-                                    double vx = Math.cos(angle) * speed;
-                                    double vz = Math.sin(angle) * speed;
-                                    double vy = 0.2 + rand.nextDouble() * 0.8;
-
-                                    EntityWaterProjectileGravity projectile = new EntityWaterProjectileGravity(world);
-                                    projectile.setPosition(entity.posX, entity.posY + entity.height * 0.7, entity.posZ);
-                                    projectile.motionX = vx;
-                                    projectile.motionY = vy;
-                                    projectile.motionZ = vz;
-                                    world.spawnEntity(projectile);
-                                }
-                                stateTimer--;
-                                spamStep++;
-                            } else {
-                                isPerformingSpam = false;
-                                spamStep = 0;
-                            }
-                        } else {
-                            isPerformingSpiral = true;
-                            this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0F);
-                            if (spiralStep < 300) {
-                                for (int i = 0; i < 4; i++) {
-                                    double angle = spiralStep * Math.PI / 10;
-                                    double radius = 1.5 + 0.05 * spiralStep;
-                                    double offsetX = Math.cos(angle) * radius;
-                                    double offsetZ = Math.sin(angle) * radius;
-
-                                    float extraOffsetX = (rand.nextFloat() * 2) - 1.0F;
-                                    float extraOffsetZ = (rand.nextFloat() * 2) - 1.0F;
-                                    float extraOffsetY = (rand.nextFloat() * 2) - 1.0F;
-
-                                    EntityWaterProjectile projectile = new EntityWaterProjectile(world, entity);
-                                    projectile.setPositionAndRotation(entity.posX + offsetX + extraOffsetX,
-                                            entity.posY + 15.0D + extraOffsetY,
-                                            entity.posZ + offsetZ + extraOffsetZ, 0, 90);
-                                    world.spawnEntity(projectile);
-
-                                    spawnWater(EnumParticleTypes.DRIP_WATER, world,
-                                            entity.posX + offsetX, entity.posY + 5.0D, entity.posZ + offsetZ,
-                                            0.0D, 0.0D, 0.0D);
-                                    spiralStep++;
-                                }
-                                stateTimer--;
-                            } else if (spiralStep >= 300) {
-                                isPerformingSpiral = false;
-                                spiralStep = 0;
-                                this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.4F);
-                                for (EntityWaterProjectile projectile : world.getEntitiesWithinAABB(EntityWaterProjectile.class, entity.getEntityBoundingBox().grow(30.0D))) {
-                                    projectile.motionY = -1D;
-                                }
+                            stateTimer--;
+                        } else if (spiralStep >= 300) {
+                            isPerformingSpiral = false;
+                            spiralStep = 0;
+                            this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.4F);
+                            for (EntityWaterProjectile projectile : world.getEntitiesWithinAABB(EntityWaterProjectile.class, entity.getEntityBoundingBox().grow(30.0D))) {
+                                projectile.motionY = -1D;
                             }
                         }
                     }
+                    if (!world.isRemote) {
+                    }
                     attackCooldown = 40 + rand.nextInt(20);
                 }
-                if (!isPerformingSpiral && stateTimer-- <= 0 && !isPerformingSpam) {
+                if (!isPerformingSpiral && stateTimer-- <= 0) {
                     currentState = State.MOVING;
                     targetPosition = null;
                 }

@@ -7,6 +7,7 @@ import curseking.biome.WorldGenCrucifixSmall;
 import curseking.gui.GuiHandler;
 import curseking.mobs.EntityAquaRegia;
 import curseking.mobs.EntityTheFallen;
+import curseking.mobs.helperentities.EntityWhirl;
 import curseking.mobs.projectiles.EntityLightningOrb;
 import curseking.mobs.projectiles.EntityWaterProjectile;
 import curseking.mobs.projectiles.EntityWaterProjectileGravity;
@@ -56,6 +57,7 @@ public class CommonProxy {
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "lightning_orb"), EntityLightningOrb.class, "LightningOrb", 6655, instance, 64, 10, true);
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "water_orb"), EntityWaterProjectile.class, "WaterOrb", 6656, instance, 64, 30, true);
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "water_orb_gravity"), EntityWaterProjectileGravity.class, "WaterOrbGravity", 6657, instance, 64, 100, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "whirl"), EntityWhirl.class, "Whirl", 6658, instance, 64, 20, true);
     }
 
     public void init(FMLInitializationEvent event) {
@@ -76,6 +78,7 @@ public class CommonProxy {
         event.getRegistry().register(ModBlocks.graveSand);
         event.getRegistry().register(ModBlocks.graveSoil);
         event.getRegistry().register(ModBlocks.smallCrucifix);
+        event.getRegistry().register(ModBlocks.elementalCore);
 
         GameRegistry.registerTileEntity(TileEntityCrystallinePurifier.class, MODID + ".crystallinePurifier");
         NetworkRegistry.INSTANCE.registerGuiHandler(CurseKing.instance, new GuiHandler());
@@ -94,11 +97,13 @@ public class CommonProxy {
         event.getRegistry().register(ASHES_OF_DIVINITY);
         event.getRegistry().register(SHATTERED_PURITY);
         event.getRegistry().register(FLUTE);
+        event.getRegistry().register(CORE_FRAGMENT);
 
         event.getRegistry().register(new ItemBlock(ModBlocks.crystallinePurifierBlock).setRegistryName(ModBlocks.crystallinePurifierBlock.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.crucifixBlock).setRegistryName(ModBlocks.crucifixBlock.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.graveSand).setRegistryName(ModBlocks.graveSand.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.graveSoil).setRegistryName(ModBlocks.graveSoil.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.smallCrucifix).setRegistryName(ModBlocks.smallCrucifix.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.elementalCore).setRegistryName(ModBlocks.elementalCore.getRegistryName()));
     }
 }

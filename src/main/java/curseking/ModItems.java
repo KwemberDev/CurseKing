@@ -16,6 +16,7 @@ public class ModItems {
     public static final ItemAshesOfDivinity ASHES_OF_DIVINITY = new ItemAshesOfDivinity();
     public static final ItemShatteredPurity SHATTERED_PURITY = new ItemShatteredPurity();
     public static final ItemFlute FLUTE = new ItemFlute();
+    public static final ItemCoreFragment CORE_FRAGMENT = new ItemCoreFragment();
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -29,6 +30,7 @@ public class ModItems {
         ASHES_OF_DIVINITY.initModel();
         SHATTERED_PURITY.initModel();
         FLUTE.initModel();
+        CORE_FRAGMENT.initModel();
     }
 
 }

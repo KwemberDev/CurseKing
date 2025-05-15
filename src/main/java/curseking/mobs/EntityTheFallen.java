@@ -38,14 +38,18 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
     private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityTheFallen.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> HEAVY_ATTACK = EntityDataManager.createKey(EntityTheFallen.class, DataSerializers.BOOLEAN);
+
+    public boolean isHeavyAttack() { return this.dataManager.get(HEAVY_ATTACK); }
+    public void setHeavyAttack(boolean heavy) { this.dataManager.set(HEAVY_ATTACK, heavy); }
 
     public boolean isAttacking() { return this.dataManager.get(ATTACKING); }
     public void setAttacking(boolean attacking) { this.dataManager.set(ATTACKING, attacking); }
 
 
-    public void startAttackAnimation() {
-        CurseKing.logger.debug("SETTING ATTACK TO TRUE.");
+    public void startAttackAnimation(boolean heavy) {
         this.setAttacking(true);
+        this.setHeavyAttack(heavy);
         AnimationController<?> controller = this.getFactory()
                 .getOrCreateAnimationData(0)
                 .getAnimationControllers()
@@ -71,7 +75,6 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
         this.tasks.addTask(2, new curseking.mobs.AIHelper.EntityAIFallenAttack(this));
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.5D));
         this.tasks.addTask(6, new EntityAIStayInBiome(this, BiomeRegistry.Grave, 1D));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -86,6 +89,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ATTACKING, false);
+        this.dataManager.register(HEAVY_ATTACK, false); // default to heavy
     }
 
     @Override
@@ -138,12 +142,18 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         CurseKing.logger.debug(isAttacking());
+        CurseKing.logger.debug(event.getController().getCurrentAnimation());
         if (isAttacking()) {
-            CurseKing.logger.debug("SETTING ATTACK ANIMATION.");
-            event.getController().setAnimationSpeed(1.3D);
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.attack", false));
-        } else {
-            event.getController().clearAnimationCache();
+            if (isHeavyAttack()) {
+                event.getController().setAnimationSpeed(1.3D);
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.attack_strong", true));
+            } else {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.attack_fast", true));
+            }
+            return PlayState.CONTINUE;
+        } else if (this.posX != this.prevPosX || this.posY != this.prevPosY || this.posZ != this.prevPosZ || this.getNavigator().getPath() != null) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.walk", true));
+        } else if (this.getNavigator().getPath() == null) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.idle", true));
         }
         return PlayState.CONTINUE;

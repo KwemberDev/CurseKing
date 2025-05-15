@@ -16,3 +16,5 @@ tile.smallcrucifix.name=Small Ancient Crucifix
 item.cursekingflute.name=Summoning Flute
 entity.TheFallen.name=§8The Fallen
 itemGroup.curseking_tab=CurseBreaker
+item.curseking.corefragment.name=§7Core Fragment
+tile.elementalcore.name=§7Elemental Core

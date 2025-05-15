@@ -15,6 +15,6 @@ public class RenderAquaRegia extends RenderLiving<EntityAquaRegia> {
 
     @Override
     protected ResourceLocation getEntityTexture(EntityAquaRegia entity) {
-        return new ResourceLocation(MODID, "textures/entity/aqua_regia.png");
+        return new ResourceLocation(MODID, "textures/entities/aqua_regia.png");
     }
 }

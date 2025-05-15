@@ -29,12 +29,10 @@ public class WeatherEventHandler {
         }
 
         if (foundBoss && !isForcingRain) {
-            CurseKing.logger.debug("STARTING RAIN");
             player.connection.sendPacket(new SPacketChangeGameState(7, 1.0F)); // Start rain
             player.connection.sendPacket(new SPacketChangeGameState(8, 0.0F)); // No thunder
             isForcingRain = true;
         } else if (!foundBoss && isForcingRain) {
-            CurseKing.logger.debug("STOPPING RAIN");
             player.connection.sendPacket(new SPacketChangeGameState(7, 0.0F)); // Stop rain
             player.connection.sendPacket(new SPacketChangeGameState(8, 0.0F)); // Stop thunder
             isForcingRain = false;

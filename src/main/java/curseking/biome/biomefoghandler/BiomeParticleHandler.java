@@ -39,7 +39,7 @@ public class BiomeParticleHandler {
                 Biome biome = mc.world.getBiome(pos);
 
                 if (biome instanceof BiomeGraveForgottenDeity) {
-                    if (mc.world.rand.nextFloat() < 0.25F) {
+                    if (mc.world.rand.nextFloat() < 0.5F) {
                         mc.world.spawnParticle(EnumParticleTypes.TOWN_AURA, x + 0.5, y + 0.5, z + 0.5, 0, 0.01, 0);
                     }
                 }

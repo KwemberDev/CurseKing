@@ -5,7 +5,9 @@ import curseking.mobs.AIHelper.*;
 import curseking.mobs.soundhelper.MovingEntitySound;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityFlying;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -32,20 +34,21 @@ public class EntityAquaRegia extends EntityFlying {
 
     public EntityAquaRegia(World worldIn) {
         super(worldIn);
-        this.setSize(0.9F, 2F);
+        this.setSize(0.90F, 2F);
         this.experienceValue = 100;
         this.isImmuneToFire = true;
         this.moveHelper = new EntityFlyHelper(this);
         this.enablePersistence();
+        this.setEntityBoundingBox(this.getEntityBoundingBox().expand(0,0.4D, 0));
     }
 
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(8, new EntityAIAquaRegiaFly(this, CurseKingConfig.mobSettings.aquaRegiusBossStats.aquaRegiusSpeed, 80));
+        this.tasks.addTask(7, new EntityAIAquaRegiaFly(this, CurseKingConfig.mobSettings.aquaRegiusBossStats.aquaRegiusSpeed, 80));
         this.tasks.addTask(9, new AILookClosest(this));
         this.tasks.addTask(10, new AIEntityIdle(this));
 
-        this.tasks.addTask(7, new EntityAIAquaRegiaAttack(this));
+        this.tasks.addTask(6, new EntityAIAquaRegiaAttack(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTargetFlying(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTargetFlying(this, EntityWither.class));
@@ -64,7 +67,6 @@ public class EntityAquaRegia extends EntityFlying {
     protected PathNavigate createNavigator(World worldIn) {
         return new PathNavigateFlying(this, worldIn);
     }
-
 
     @Override
     public boolean isImmuneToExplosions() {
