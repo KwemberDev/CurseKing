@@ -141,8 +141,6 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        CurseKing.logger.debug(isAttacking());
-        CurseKing.logger.debug(event.getController().getCurrentAnimation());
         if (isAttacking()) {
             if (isHeavyAttack()) {
                 event.getController().setAnimationSpeed(1.3D);

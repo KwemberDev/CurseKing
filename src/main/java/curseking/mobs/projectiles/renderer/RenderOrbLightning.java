@@ -39,6 +39,6 @@ public class RenderOrbLightning extends Render<EntityLightningOrb> {
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityLightningOrb entity) {
-        return new ResourceLocation(MODID, "textures/entity/royalarrow.png");
+        return new ResourceLocation(MODID, "textures/entities/aqua_regia.png");
     }
 }

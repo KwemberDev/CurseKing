@@ -2,12 +2,12 @@
   "parent": "curseking:block/smallcross",
   "display": {
     "thirdperson_righthand": {
-      "rotation": [ 10, -45, 0 ],
+      "rotation": [ 10, -45, 4 ],
       "translation": [ 0, 1.5, -2.75 ],
       "scale": [ 0.375, 0.375, 0.375 ]
     },
     "thirdperson_lefthand": {
-      "rotation": [ 10, 45, 0 ],
+      "rotation": [ 10, 45, 4 ],
       "translation": [ 0, 1.5, -2.75 ],
       "scale": [ 0.375, 0.375, 0.375 ]
     },

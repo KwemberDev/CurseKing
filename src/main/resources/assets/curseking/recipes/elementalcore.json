@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GG",
+    "GG"
+  ],
+  "key": {
+    "G": { "item": "curseking:corefragment" }
+  },
+  "result": {
+    "item": "curseking:elementalcore",
+    "count": 1
+  }
+}

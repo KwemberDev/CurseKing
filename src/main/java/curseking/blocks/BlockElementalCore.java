@@ -1,8 +1,7 @@
 package curseking.blocks;
 
 import curseking.CurseKing;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -24,7 +23,7 @@ public class BlockElementalCore extends Block {
         setHardness(1.5F);
         setCreativeTab(CurseKing.CURSEKING_TAB);
         setSoundType(SoundType.STONE);
-        setLightLevel(15.0F); // Emits maximum light (level 15)
+        setLightLevel(0.75F);
     }
 
     @SideOnly(Side.CLIENT)

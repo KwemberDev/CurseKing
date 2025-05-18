@@ -102,5 +102,23 @@ public class CurseKingConfig {
 
         @Config.Name("Aqua Regius Attacking Movement Speed")
         public float aquaRegiusAttackMovementSpeed = 2F;
+
+        @Config.Name("Aqua Regius Attack Type Chances | NOT RECOMMENDED TO CHANGE")
+        @Config.Comment("The chance the boss uses a specific attack. these to in this order: Primary -> Water Whirl -> Arrow Rain. \n For an attack to happen the ones before it need to fail their checks.")
+        public BossChanceType bossChanceType = new BossChanceType();
     }
+
+    @Mod.EventBusSubscriber
+    public static class BossChanceType {
+        @Config.Name("Aqua Regius Attack Type Chance | Primary Arrow Attack")
+        public float primary = 0.8F;
+
+        @Config.Name("Aqua Regius Attack Type Chance | Water Whirl Attack")
+        public float whirl = 0.75F;
+
+        @Config.Name("Water Whirl base amount")
+        @Config.Comment("The base amount of water whirl projectiles spawned during the attack. note: base amount, there will always be a randomization of +=0-5.")
+        public int whirlBaseAmount = 5;
+    }
+
 }

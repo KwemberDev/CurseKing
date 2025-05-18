@@ -10,23 +10,51 @@ import net.minecraft.entity.Entity;
 
 public class RoyalArrow extends ModelBase {
 	private final ModelRenderer bb_main;
+	private final ModelRenderer cube_r1;
+	private final ModelRenderer cube_r2;
+	private final ModelRenderer cube_r3;
+	private final ModelRenderer cube_r4;
+	private final ModelRenderer cube_r5;
 
 	public RoyalArrow() {
-		textureWidth = 32;
-		textureHeight = 32;
+		textureWidth = 128;
+		textureHeight = 128;
 
 		bb_main = new ModelRenderer(this);
 		bb_main.setRotationPoint(0.0F, 24.0F, 0.0F);
-		bb_main.cubeList.add(new ModelBox(bb_main, 2, 1, -0.5F, -32.0F, -0.5F, 1, 2, 1, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, -1, 0, -1.0F, -31.0F, -1.0F, 2, 2, 2, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, -2, -1, -1.5F, -30.0F, -1.5F, 3, 6, 3, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -1.0F, -25.0F, -1.0F, 2, 2, 2, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -1.0F, -9.0F, -1.0F, 2, 4, 2, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 1, 1, -0.5F, -6.0F, -0.5F, 1, 2, 1, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 1, 1, -1.0F, -4.0F, -0.5F, 2, 2, 1, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -0.5F, -4.0F, -1.0F, 1, 2, 2, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 1, 1, -0.5F, -4.0F, -0.5F, 1, 4, 1, 0.0F, false));
-		bb_main.cubeList.add(new ModelBox(bb_main, 2, 1, -0.5F, -24.0F, -0.5F, 1, 16, 1, 0.0F, false));
+		bb_main.cubeList.add(new ModelBox(bb_main, 99, 20, -0.5F, -8.5F, -5.0F, 1, 1, 13, 0.0F, false));
+
+		cube_r1 = new ModelRenderer(this);
+		cube_r1.setRotationPoint(0.0F, -8.0F, -10.0F);
+		bb_main.addChild(cube_r1);
+		setRotationAngle(cube_r1, 0.0F, 0.0F, -2.3562F);
+		cube_r1.cubeList.add(new ModelBox(cube_r1, 24, 17, 0.0F, -3.0F, 0.0F, 0, 2, 7, 0.0F, false));
+		cube_r1.cubeList.add(new ModelBox(cube_r1, 34, 10, 0.0F, -5.0F, 7.0F, 0, 5, 11, 0.0F, false));
+
+		cube_r2 = new ModelRenderer(this);
+		cube_r2.setRotationPoint(0.0F, -8.0F, -10.0F);
+		bb_main.addChild(cube_r2);
+		setRotationAngle(cube_r2, 0.0F, 0.0F, 2.3562F);
+		cube_r2.cubeList.add(new ModelBox(cube_r2, 24, 17, 0.0F, -3.0F, 0.0F, 0, 2, 7, 0.0F, false));
+		cube_r2.cubeList.add(new ModelBox(cube_r2, 34, 10, 0.0F, -5.0F, 7.0F, 0, 5, 11, 0.0F, false));
+
+		cube_r3 = new ModelRenderer(this);
+		cube_r3.setRotationPoint(0.0F, -8.0F, -2.0F);
+		bb_main.addChild(cube_r3);
+		setRotationAngle(cube_r3, -1.5708F, 0.0F, 0.0F);
+		cube_r3.cubeList.add(new ModelBox(cube_r3, 82, 23, 0.0F, 1.0F, -3.0F, 0, 7, 3, 0.0F, false));
+
+		cube_r4 = new ModelRenderer(this);
+		cube_r4.setRotationPoint(0.0F, -8.0F, 4.0F);
+		bb_main.addChild(cube_r4);
+		setRotationAngle(cube_r4, 0.0F, 0.0F, 0.7854F);
+		cube_r4.cubeList.add(new ModelBox(cube_r4, 34, 10, 0.0F, -5.0F, -7.0F, 0, 5, 11, 0.0F, false));
+
+		cube_r5 = new ModelRenderer(this);
+		cube_r5.setRotationPoint(0.0F, -8.0F, 4.0F);
+		bb_main.addChild(cube_r5);
+		setRotationAngle(cube_r5, 0.0F, 0.0F, -0.7854F);
+		cube_r5.cubeList.add(new ModelBox(cube_r5, 34, 10, 0.0F, -5.0F, -7.0F, 0, 5, 11, 0.0F, false));
 	}
 
 	@Override

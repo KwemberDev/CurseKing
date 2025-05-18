@@ -39,6 +39,6 @@ public class RenderOrbGravity extends Render<EntityWaterProjectileGravity> {
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityWaterProjectileGravity entity) {
-        return new ResourceLocation(MODID, "textures/entity/royalarrow.png");
+        return new ResourceLocation(MODID, "textures/entities/aqua_regia.png");
     }
 }

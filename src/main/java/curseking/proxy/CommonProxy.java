@@ -55,9 +55,9 @@ public class CommonProxy {
                 0x111FF1, 0x55FFFF
         );
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "lightning_orb"), EntityLightningOrb.class, "LightningOrb", 6655, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "water_orb"), EntityWaterProjectile.class, "WaterOrb", 6656, instance, 64, 30, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "water_orb"), EntityWaterProjectile.class, "WaterOrb", 6656, instance, 64, 3, true);
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "water_orb_gravity"), EntityWaterProjectileGravity.class, "WaterOrbGravity", 6657, instance, 64, 100, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "whirl"), EntityWhirl.class, "Whirl", 6658, instance, 64, 20, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID, "whirl"), EntityWhirl.class, "Whirl", 6658, instance, 64, 3, true);
     }
 
     public void init(FMLInitializationEvent event) {

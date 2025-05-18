@@ -8,12 +8,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -84,6 +86,14 @@ public class ItemFlute extends Item {
             } else {
                 ((EntityPlayer) player).sendStatusMessage(new TextComponentString(TextFormatting.GRAY + "None respond to the flutes music..."), true);
             }
+            world.playSound(
+                    null, // Player, or null for all nearby players
+                    player.posX, player.posY, player.posZ,
+                    SoundEvents.BLOCK_NOTE_FLUTE, // Use the correct sound event for your version
+                    SoundCategory.PLAYERS,
+                    1.0F, // volume
+                    1.0F  // pitch
+            );
         }
     }
 
@@ -95,6 +105,6 @@ public class ItemFlute extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(TextFormatting.DARK_GRAY + "A certain elemental being likes the sound. Playing the flute might summon it.");
+        tooltip.add(TextFormatting.DARK_GRAY + "A certain elemental being likes the sound. Playing the flute might wake it up.");
     }
 }
