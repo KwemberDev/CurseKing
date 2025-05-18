@@ -39,7 +39,7 @@ public class BlockCrucifix extends Block {
     private static final AxisAlignedBB SLANTED_TOP_AABB = new AxisAlignedBB((double) 0, (double) 0, (double) 4 / 16, (double) 1, (double) 2, (double) 12 / 16);
 
     public BlockCrucifix() {
-        super(Material.WOOD);
+        super(Material.ANVIL);
         setTranslationKey("crucifix");
         setRegistryName("crucifix");
         setHardness(2.0F);

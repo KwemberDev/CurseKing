@@ -12,6 +12,7 @@ public class ModBlocks {
     public static final GraveSoil graveSoil = new GraveSoil();
     public static final SmallCrucifix smallCrucifix = new SmallCrucifix();
     public static final BlockElementalCore elementalCore = new BlockElementalCore();
+    public static final BlockCoreFull coreFull = new BlockCoreFull();
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -21,6 +22,7 @@ public class ModBlocks {
         graveSoil.initModel();
         smallCrucifix.initModel();
         elementalCore.initModel();
+        coreFull.initModel();
     }
 
 }

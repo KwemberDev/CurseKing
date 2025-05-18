@@ -1,6 +1,7 @@
 package curseking.items;
 
 import curseking.CurseKing;
+import curseking.items.helper.FluteEventHandler;
 import curseking.mobs.EntityAquaRegia;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -55,7 +56,7 @@ public class ItemFlute extends Item {
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase player, int timeLeft) {
         int useDuration = this.getMaxItemUseDuration(stack) - timeLeft;
-        if (useDuration >= 60 && !world.isRemote) {
+        if (useDuration >= 40 && !world.isRemote) {
             BlockPos pos = new BlockPos(player);
             String biomeName = world.getBiome(pos).getRegistryName().getPath();
             // Check for beach or ocean/water biomes
@@ -86,15 +87,8 @@ public class ItemFlute extends Item {
             } else {
                 ((EntityPlayer) player).sendStatusMessage(new TextComponentString(TextFormatting.GRAY + "None respond to the flutes music..."), true);
             }
-            world.playSound(
-                    null, // Player, or null for all nearby players
-                    player.posX, player.posY, player.posZ,
-                    SoundEvents.BLOCK_NOTE_FLUTE, // Use the correct sound event for your version
-                    SoundCategory.PLAYERS,
-                    1.0F, // volume
-                    1.0F  // pitch
-            );
         }
+        FluteEventHandler.playFluteMelody((EntityPlayer) player, world);
     }
 
     @SideOnly(Side.CLIENT)

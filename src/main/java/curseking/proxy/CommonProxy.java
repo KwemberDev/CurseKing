@@ -79,6 +79,7 @@ public class CommonProxy {
         event.getRegistry().register(ModBlocks.graveSoil);
         event.getRegistry().register(ModBlocks.smallCrucifix);
         event.getRegistry().register(ModBlocks.elementalCore);
+        event.getRegistry().register(ModBlocks.coreFull);
 
         GameRegistry.registerTileEntity(TileEntityCrystallinePurifier.class, MODID + ".crystallinePurifier");
         NetworkRegistry.INSTANCE.registerGuiHandler(CurseKing.instance, new GuiHandler());
@@ -105,5 +106,6 @@ public class CommonProxy {
         event.getRegistry().register(new ItemBlock(ModBlocks.graveSoil).setRegistryName(ModBlocks.graveSoil.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.smallCrucifix).setRegistryName(ModBlocks.smallCrucifix.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.elementalCore).setRegistryName(ModBlocks.elementalCore.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.coreFull).setRegistryName(ModBlocks.coreFull.getRegistryName()));
     }
 }

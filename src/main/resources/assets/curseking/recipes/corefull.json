@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": { "item": "curseking:corefragment" }
+  },
+  "result": {
+    "item": "curseking:corefull",
+    "count": 1
+  }
+}

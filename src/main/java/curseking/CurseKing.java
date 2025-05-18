@@ -30,8 +30,6 @@ public class CurseKing {
     public static final String MODNAME = "CurseKing";
     public static final String MODVERSION = "1.0.0";
 
-    //TODO full core block (make it a value block like dia-gold-em block)
-
     @Mod.Instance(MODID)
     public static CurseKing instance;
 
