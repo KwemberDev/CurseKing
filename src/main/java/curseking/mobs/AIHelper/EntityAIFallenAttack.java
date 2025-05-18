@@ -13,8 +13,8 @@ public class EntityAIFallenAttack extends EntityAIBase {
     private EntityLivingBase target;
     private int attackCooldown = 0;
     private final double speedTowardsTarget = 0.8D;
-    private final int attackInterval = 39; // ticks (2 seconds)
-    private final int attackIntervalLight = 31; // blocks
+    private final int attackInterval = 39;
+    private final int attackIntervalLight = 31;
     private boolean heavy;
     private final Random random = new Random();
 

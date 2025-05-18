@@ -49,7 +49,6 @@ public class CrystallinePurifierBlock extends Block implements ITileEntityProvid
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         if (state.getValue(HALF) == EnumBlockHalf.UPPER) {
-            // Example: make the upper half shorter
             return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
         }
         // Default full block for lower half

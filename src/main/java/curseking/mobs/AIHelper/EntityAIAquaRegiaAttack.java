@@ -18,8 +18,6 @@ import java.util.Random;
 
 import static curseking.mobs.EntityAquaRegia.CURRENTSTATE;
 
-//import static curseking.mobs.EntityAquaRegia.ISALLOWEDATTACK;
-
 public class EntityAIAquaRegiaAttack extends EntityAIBase {
     private final EntityAquaRegia entity;
     private int attackCooldown = 0;

@@ -227,7 +227,6 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         AnimationController<?> controller = event.getController();
-        boolean playedHostilePosition = this.getDataManager().get(HOSTILEPOS);
         CurseKing.logger.debug("3. CURRENT STATE: {}", AquaRegiaState.valueOf(this.getDataManager().get(CURRENTSTATE)));
 
         switch (AquaRegiaState.valueOf(this.getDataManager().get(CURRENTSTATE))) {

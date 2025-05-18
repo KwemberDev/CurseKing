@@ -28,10 +28,10 @@ public class CommandFindForgottenDeityBiome extends CommandBase {
         if (world.isRemote) return;
 
         BlockPos start = sender.getPosition();
-        Biome targetBiome = BiomeRegistry.Grave; // Replace with your actual biome reference
+        Biome targetBiome = BiomeRegistry.Grave;
 
         int maxRadius = 5120; // Max search radius in blocks
-        int chunkStep = 1;    // Steps in chunk units (1 = 16 blocks)
+        int chunkStep = 1;
         BlockPos found = null;
 
         outerLoop:
@@ -39,7 +39,6 @@ public class CommandFindForgottenDeityBiome extends CommandBase {
             for (int dx = -radius; dx <= radius; dx += 16 * chunkStep) {
                 for (int dz = -radius; dz <= radius; dz += 16 * chunkStep) {
 
-                    // Only check edge of square to avoid redundant checks
                     if (Math.abs(dx) != radius && Math.abs(dz) != radius) continue;
 
                     BlockPos checkPos = start.add(dx, 0, dz);
@@ -62,6 +61,6 @@ public class CommandFindForgottenDeityBiome extends CommandBase {
 
     @Override
     public int getRequiredPermissionLevel() {
-        return 2; // OP permission level
+        return 2;
     }
 }

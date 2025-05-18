@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class CurseKingCreativeTab extends CreativeTabs {
     public CurseKingCreativeTab() {
-        super("curseking_tab"); // Tab name
+        super("curseking_tab");
     }
 
     @Override

@@ -64,6 +64,6 @@ public class CommandMobStats extends CommandBase {
 
     @Override
     public int getRequiredPermissionLevel() {
-        return 0; // Allow all players
+        return 0;
     }
 }

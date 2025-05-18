@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber
 public class FluteEventHandler {
-    // In your ItemFlute class or a helper class
+
     private static final Map<Integer, Integer> playerNoteTicks = new HashMap<>();
 
     public static void playFluteMelody(EntityPlayer player, World world) {
@@ -22,7 +22,6 @@ public class FluteEventHandler {
         playerNoteTicks.put(entityId, 0);
     }
 
-    // In your main mod class, subscribe to the player tick event:
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         CurseKing.logger.debug("PLAYING FLUTE MELODY");
