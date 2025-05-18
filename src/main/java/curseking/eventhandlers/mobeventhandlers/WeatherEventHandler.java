@@ -1,6 +1,5 @@
 package curseking.eventhandlers.mobeventhandlers;
 
-import curseking.CurseKing;
 import curseking.mobs.EntityAquaRegia;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;

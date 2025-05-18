@@ -208,7 +208,7 @@ public class TileEntityCrystallinePurifier extends TileEntity implements IInvent
             case 0: return this.furnaceBurnTime;
             case 1: return this.currentItemBurnTime;
             case 2: return this.cookTime;
-            case 3: return this.totalCookTime;
+            case 3: return totalCookTime;
             case 4: return this.cookTimeRemaining;
             default: return 0;
         }
@@ -220,7 +220,7 @@ public class TileEntityCrystallinePurifier extends TileEntity implements IInvent
             case 0: this.furnaceBurnTime = value; break;
             case 1: this.currentItemBurnTime = value; break;
             case 2: this.cookTime = value; break;
-            case 3: this.totalCookTime = value; break;
+            case 3: totalCookTime = value; break;
             case 4: this.cookTimeRemaining = value; break;
         }
     }

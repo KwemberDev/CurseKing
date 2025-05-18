@@ -5,7 +5,6 @@ import curseking.mobs.EntityAquaRegia;
 import curseking.mobs.helperentities.EntityWhirl;
 import curseking.mobs.projectiles.EntityLightningOrb;
 import curseking.mobs.projectiles.EntityWaterProjectile;
-import curseking.mobs.projectiles.EntityWaterProjectileGravity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -14,9 +13,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import software.bernie.geckolib3.core.controller.AnimationController;
 
-import java.lang.reflect.Field;
 import java.util.Random;
 
 import static curseking.mobs.EntityAquaRegia.CURRENTSTATE;

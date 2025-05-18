@@ -5,11 +5,11 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public class AIEntityIdle extends EntityAIBase {
 
-    private EntityLiving entity;
+    private final EntityLiving entity;
 
     private int idleTime;
-    private int idleTimeMin = 20;
-    private int idleTimeRange = 20;
+    private final int idleTimeMin = 20;
+    private final int idleTimeRange = 20;
 
     private double lookVecX;
     private double lookVecZ;

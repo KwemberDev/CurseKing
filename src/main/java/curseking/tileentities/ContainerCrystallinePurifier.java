@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ContainerCrystallinePurifier extends Container {
     private final IInventory tile;
     private int cookTimeRemaining;
-    private int lastCookTimeRemaining = -1;
+    private final int lastCookTimeRemaining = -1;
 
 
     public ContainerCrystallinePurifier(InventoryPlayer playerInv, IInventory tile) {

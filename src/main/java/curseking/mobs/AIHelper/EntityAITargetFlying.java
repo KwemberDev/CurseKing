@@ -91,7 +91,7 @@ public abstract class EntityAITargetFlying extends EntityAIBase {
 
     @Override
     public void resetTask() {
-        this.taskOwner.setAttackTarget((EntityLivingBase) null);
+        this.taskOwner.setAttackTarget(null);
         this.target = null;
     }
 
@@ -136,9 +136,7 @@ public abstract class EntityAITargetFlying extends EntityAIBase {
                     this.targetSearchStatus = this.canEasilyReach(target) ? 1 : 2;
                 }
 
-                if (this.targetSearchStatus == 2) {
-                    return false;
-                }
+                return this.targetSearchStatus != 2;
             }
 
             return true;

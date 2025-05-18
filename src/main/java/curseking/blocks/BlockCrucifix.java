@@ -10,7 +10,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,10 +32,10 @@ public class BlockCrucifix extends Block {
     public static final PropertyEnum<BlockDoor.EnumDoorHalf> HALF = PropertyEnum.create("half", BlockDoor.EnumDoorHalf.class);
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     private final Random random = new Random();
-    private static final AxisAlignedBB UPRIGHT_BOTTOM_AABB = new AxisAlignedBB((double) 4 / 16, (double) 0, (double) 4 / 16, (double) 12 / 16, (double) 1, (double) 12 / 16);
-    private static final AxisAlignedBB UPRIGHT_TOP_AABB = new AxisAlignedBB((double) 4 / 16, (double) 0, (double) 4 / 16, (double) 12 / 16, (double) 2, (double) 12 / 16);
-    private static final AxisAlignedBB SLANTED_BOTTOM_AABB = new AxisAlignedBB((double) 0, (double) 0, (double) 4 / 16, (double) 1, (double) 1, (double) 12 / 16);
-    private static final AxisAlignedBB SLANTED_TOP_AABB = new AxisAlignedBB((double) 0, (double) 0, (double) 4 / 16, (double) 1, (double) 2, (double) 12 / 16);
+    private static final AxisAlignedBB UPRIGHT_BOTTOM_AABB = new AxisAlignedBB((double) 4 / 16, 0, (double) 4 / 16, (double) 12 / 16, 1, (double) 12 / 16);
+    private static final AxisAlignedBB UPRIGHT_TOP_AABB = new AxisAlignedBB((double) 4 / 16, 0, (double) 4 / 16, (double) 12 / 16, 2, (double) 12 / 16);
+    private static final AxisAlignedBB SLANTED_BOTTOM_AABB = new AxisAlignedBB(0, 0, (double) 4 / 16, 1, 1, (double) 12 / 16);
+    private static final AxisAlignedBB SLANTED_TOP_AABB = new AxisAlignedBB(0, 0, (double) 4 / 16, 1, 2, (double) 12 / 16);
 
     public BlockCrucifix() {
         super(Material.ANVIL);

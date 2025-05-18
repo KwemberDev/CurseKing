@@ -1,6 +1,5 @@
 package curseking.mobs.AIHelper;
 
-import curseking.CurseKing;
 import curseking.mobs.EntityTheFallen;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;

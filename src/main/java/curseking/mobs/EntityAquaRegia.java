@@ -6,11 +6,8 @@ import curseking.mobs.AIHelper.*;
 import curseking.mobs.soundhelper.MovingEntitySound;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityFlying;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
@@ -25,17 +22,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
-import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import java.lang.reflect.Field;
 
 import static curseking.CurseKing.MODID;
 
@@ -44,9 +37,9 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS).setCreateFog(true));
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityAquaRegia.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> AGGRO = EntityDataManager.<Boolean>createKey(EntityAquaRegia.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> HOSTILEPOS = EntityDataManager.<Boolean>createKey(EntityAquaRegia.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(EntityAquaRegia.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> AGGRO = EntityDataManager.createKey(EntityAquaRegia.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> HOSTILEPOS = EntityDataManager.createKey(EntityAquaRegia.class, DataSerializers.BOOLEAN);
     public static final DataParameter<String> CURRENTSTATE = EntityDataManager.createKey(EntityAquaRegia.class, DataSerializers.STRING);
     private static final DataParameter<Integer> ATTACKTIMER = EntityDataManager.createKey(EntityAquaRegia.class, DataSerializers.VARINT);
 

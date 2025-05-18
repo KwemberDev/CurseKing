@@ -1,8 +1,8 @@
 package curseking.mobs.geomodels;
 
 import curseking.mobs.EntityTheFallen;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
 import net.minecraft.util.ResourceLocation;
+import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class ModelTheFallen extends AnimatedGeoModel<EntityTheFallen> {
     @Override

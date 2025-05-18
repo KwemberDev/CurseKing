@@ -8,16 +8,16 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class AILookClosest extends EntityAIBase {
 
-    private EntityLiving entity;
+    private final EntityLiving entity;
 
     protected Entity closestEntity;
 
-    private Class watchedClass = EntityLivingBase.class;
-    private float maxDistanceForPlayer = 4.0F;
+    private final Class watchedClass = EntityLivingBase.class;
+    private final float maxDistanceForPlayer = 4.0F;
     private int lookTime;
-    private int lookTimeMin = 40;
-    private int lookTimeRange = 40;
-    private float lookChance = 0.02F;
+    private final int lookTimeMin = 40;
+    private final int lookTimeRange = 40;
+    private final float lookChance = 0.02F;
 
     public AILookClosest(EntityLiving entity) {
         this.entity = entity;
@@ -31,9 +31,9 @@ public class AILookClosest extends EntityAIBase {
             if(this.entity.getAttackTarget() != null)
                 this.closestEntity = this.entity.getAttackTarget();
             if(this.watchedClass == EntityPlayer.class)
-                this.closestEntity = this.entity.getEntityWorld().getClosestPlayerToEntity(this.entity, (double)this.maxDistanceForPlayer);
+                this.closestEntity = this.entity.getEntityWorld().getClosestPlayerToEntity(this.entity, this.maxDistanceForPlayer);
             else
-                this.closestEntity = this.entity.getEntityWorld().findNearestEntityWithinAABB(this.watchedClass, this.entity.getEntityBoundingBox().grow((double)this.maxDistanceForPlayer, 3.0D, (double)this.maxDistanceForPlayer), this.entity);
+                this.closestEntity = this.entity.getEntityWorld().findNearestEntityWithinAABB(this.watchedClass, this.entity.getEntityBoundingBox().grow(this.maxDistanceForPlayer, 3.0D, this.maxDistanceForPlayer), this.entity);
 
             return this.closestEntity != null;
         }
