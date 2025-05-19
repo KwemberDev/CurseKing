@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod(modid = CurseKing.MODID, name = CurseKing.MODNAME, version = CurseKing.MODVERSION, dependencies = "required-after:forge@[11.16.0.1865,)", useMetadata = true)
 public class CurseKing {
@@ -45,6 +46,7 @@ public class CurseKing {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
+        GeckoLib.initialize();
         proxy.preInit(event);
         MinecraftForge.TERRAIN_GEN_BUS.register(new BiomeLakeRemover());
     }

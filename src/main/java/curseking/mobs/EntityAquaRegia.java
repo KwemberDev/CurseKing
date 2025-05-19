@@ -120,12 +120,7 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
             double z = this.posZ + (this.world.rand.nextDouble() - 0.5) * this.width;
             this.world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0, 0, 0);
         }
-        CurseKing.logger.debug("1. {}", this.getAttackTarget());
-        if (this.getAttackTarget() != null) {
-            CurseKing.logger.debug("2. {}", this.getAttackTarget().isEntityAlive());
-        }
         String currentState = this.getDataManager().get(CURRENTSTATE);
-
         // Only set HOSTILE_POSITION if not in an attack state
         if (this.getAttackTarget() != null && this.getAttackTarget().isEntityAlive()
                 && currentState.equals(AquaRegiaState.NEUTRAL_IDLE.name())) {
@@ -227,8 +222,6 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         AnimationController<?> controller = event.getController();
-        CurseKing.logger.debug("3. CURRENT STATE: {}", AquaRegiaState.valueOf(this.getDataManager().get(CURRENTSTATE)));
-
         switch (AquaRegiaState.valueOf(this.getDataManager().get(CURRENTSTATE))) {
             case NEUTRAL_IDLE:
                 controller.setAnimationSpeed(1.5f);
