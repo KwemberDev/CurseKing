@@ -1,9 +1,7 @@
 package curseking.mixin.sky;
 
-import curseking.CurseKing;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-import static curseking.eventhandlers.mobeventhandlers.WeatherEventHandler.*;
+import static curseking.eventhandlers.mobeventhandlers.WeatherEventHandler.isForcingRain;
+import static curseking.eventhandlers.mobeventhandlers.WeatherEventHandler.isFoundBoss;
 
 // In your client mod or mixin package
 @Mixin(EntityRenderer.class)

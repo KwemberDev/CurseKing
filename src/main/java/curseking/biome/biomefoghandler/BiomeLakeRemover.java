@@ -1,6 +1,5 @@
 package curseking.biome.biomefoghandler;
 
-import curseking.CurseKing;
 import curseking.biome.BiomeGraveForgottenDeity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;

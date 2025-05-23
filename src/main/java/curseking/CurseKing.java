@@ -29,7 +29,7 @@ public class CurseKing {
 
     public static final String MODID = "curseking";
     public static final String MODNAME = "CurseKing";
-    public static final String MODVERSION = "1.0.1";
+    public static final String MODVERSION = "1.0.3";
 
     @Mod.Instance(MODID)
     public static CurseKing instance;

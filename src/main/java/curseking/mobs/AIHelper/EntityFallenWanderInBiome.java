@@ -2,11 +2,9 @@ package curseking.mobs.AIHelper;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 public class EntityFallenWanderInBiome extends EntityAIBase {
     private final EntityCreature entity;

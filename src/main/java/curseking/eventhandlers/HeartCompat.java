@@ -1,32 +1,51 @@
-package curseking.mixin;
+package curseking.eventhandlers;
 
 import curseking.CurseDataProvider;
 import curseking.CurseKing;
 import curseking.ICurseData;
 import curseking.config.CurseKingConfig;
+import curseking.config.ScalingHealthConfigUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Loader;
-import net.silentchaos512.scalinghealth.config.Config;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mixin(net.silentchaos512.scalinghealth.client.HeartDisplayHandler.class)
+import java.io.File;
+
+@Mod.EventBusSubscriber(modid = CurseKing.MODID)
 public class HeartCompat {
 
     // COMPAT CODE FOR WHEN SCALING HEALTH IN INSTALLED.
-    @Inject(method = "renderHearts", at = @At("TAIL"), remap = false)
-    public void renderCursedHearts(RenderGameOverlayEvent event, Minecraft mc, EntityPlayer player, CallbackInfo ci) {
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void renderCursedHearts(RenderGameOverlayEvent.Pre event) {
 
-        if (!(Loader.isModLoaded("scalinghealth") && Config.Client.Hearts.customHeartRendering)) return;
+        CurseKing.logger.debug("REACHED RENDER EVENT");
+
+        if (event.getType() != RenderGameOverlayEvent.ElementType.HEALTH) return;
+
+        CurseKing.logger.debug("PASSED FOOD CHECK");
+
+        if (!(Loader.isModLoaded("scalinghealth"))) return;
+
+        CurseKing.logger.debug("PASSED MOD LOADER CHECK");
+
+        File configDir = new File(Minecraft.getMinecraft().gameDir, "config");
+        if (!ScalingHealthConfigUtil.isCustomHeartRenderingEnabled(configDir)) return;
+
+        CurseKing.logger.debug("PASSED CONFIG CHECK.");
+
+        Minecraft mc = Minecraft.getMinecraft();
+        EntityPlayer player = mc.player;
+
         if (player == null || !player.isEntityAlive()) return;
 
         int width = event.getResolution().getScaledWidth();

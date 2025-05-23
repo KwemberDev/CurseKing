@@ -1,10 +1,8 @@
 package curseking.eventhandlers.mobeventhandlers;
 
-import curseking.CurseKing;
 import curseking.mobs.EntityAquaRegia;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.SPacketChangeGameState;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;

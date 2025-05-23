@@ -1,6 +1,5 @@
 package curseking.items.helper;
 
-import curseking.CurseKing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;

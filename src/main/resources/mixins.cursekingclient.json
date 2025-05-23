@@ -6,7 +6,6 @@
   "target": "@env(CLIENT)",
   "mixins": [],
   "client": [
-    "HeartCompat",
     "sky.MixinRenderGlobal"
   ],
   "injectors": {

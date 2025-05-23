@@ -1,14 +1,11 @@
 package curseking.mobs;
 
-import curseking.CurseKing;
 import curseking.config.CurseKingConfig;
 import curseking.mobs.AIHelper.*;
 import curseking.mobs.soundhelper.MovingEntitySound;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;

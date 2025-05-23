@@ -6,13 +6,11 @@ import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.Mixins;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 @IFMLLoadingPlugin.Name("CurseKing")
 @IFMLLoadingPlugin.MCVersion("1.12.2")
-@IFMLLoadingPlugin.SortingIndex(99888)
 public class MixinLoader implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     public MixinLoader() {

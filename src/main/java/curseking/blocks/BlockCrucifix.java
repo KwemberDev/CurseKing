@@ -244,5 +244,4 @@ public class BlockCrucifix extends Block {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add(TextFormatting.DARK_GRAY + "Sneak to place slanted.");
     }
-
 }

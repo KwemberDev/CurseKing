@@ -4,6 +4,7 @@ import curseking.CurseDataProvider;
 import curseking.CurseKing;
 import curseking.ICurseData;
 import curseking.config.CurseKingConfig;
+import curseking.config.ScalingHealthConfigUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
@@ -18,11 +19,12 @@ import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
-import net.silentchaos512.scalinghealth.config.Config;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.io.File;
 
 import static net.minecraftforge.client.GuiIngameForge.left_height;
 
@@ -40,7 +42,11 @@ public abstract class MixinGuiIngame extends GuiIngame {
      */
     @Inject(method = "renderHealth", at = @At(value = "HEAD"), cancellable = true, remap = false)
     private void onRenderHealth(int width, int height, CallbackInfo ci) {
-        if (Loader.isModLoaded("scalinghealth") && Config.Client.Hearts.customHeartRendering) return;
+        if (Loader.isModLoaded("scalinghealth")) return;
+
+        File configDir = new File(Minecraft.getMinecraft().gameDir, "config");
+        if (ScalingHealthConfigUtil.isCustomHeartRenderingEnabled(configDir)) return;
+
         mc.getTextureManager().bindTexture(ICONS);
         if (MinecraftForge.EVENT_BUS.post(new RenderGameOverlayEvent.Pre(new RenderGameOverlayEvent(mc.getRenderPartialTicks(), new ScaledResolution(mc)), RenderGameOverlayEvent.ElementType.HEALTH))) return;
         mc.profiler.startSection("health");
