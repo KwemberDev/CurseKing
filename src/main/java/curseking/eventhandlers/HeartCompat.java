@@ -27,22 +27,10 @@ public class HeartCompat {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void renderCursedHearts(RenderGameOverlayEvent.Pre event) {
-
-        CurseKing.logger.debug("REACHED RENDER EVENT");
-
-        if (event.getType() != RenderGameOverlayEvent.ElementType.HEALTH) return;
-
-        CurseKing.logger.debug("PASSED FOOD CHECK");
-
+        if (event.getType() != RenderGameOverlayEvent.ElementType.FOOD) return;
         if (!(Loader.isModLoaded("scalinghealth"))) return;
-
-        CurseKing.logger.debug("PASSED MOD LOADER CHECK");
-
         File configDir = new File(Minecraft.getMinecraft().gameDir, "config");
         if (!ScalingHealthConfigUtil.isCustomHeartRenderingEnabled(configDir)) return;
-
-        CurseKing.logger.debug("PASSED CONFIG CHECK.");
-
         Minecraft mc = Minecraft.getMinecraft();
         EntityPlayer player = mc.player;
 
@@ -66,9 +54,8 @@ public class HeartCompat {
         int currentHealthHearts = MathHelper.ceil(player.getHealth() / 2.0F);
         int currentHealthRow = (currentHealthHearts - 1) / 10;
 
-        GlStateManager.enableBlend();
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0, 0, 500);
+        GlStateManager.translate(0, 0, 1000);
 
         // === Render Cursed Hearts ===
         if (data.hasCurse("curse_decay")) {
@@ -81,7 +68,9 @@ public class HeartCompat {
                 if (row == currentHealthRow) {
                     int x = left + col * 8;
                     int y = top;
+                    GlStateManager.enableBlend();
                     mc.ingameGUI.drawTexturedModalRect(x, y, 0, 0, 9, 9);
+                    GlStateManager.disableBlend();
                 }
             }
         }
@@ -96,12 +85,14 @@ public class HeartCompat {
                 if (row == currentHealthRow && heartIndex >= 0) {
                     int x = left + col * 8;
                     int y = top - 3; // match y offset for blessed hearts
+                    GlStateManager.enableBlend();
                     mc.ingameGUI.drawTexturedModalRect(x, y, 0, 0, 9, 12);
+                    GlStateManager.disableBlend();
                 }
             }
         }
+        GlStateManager.disableBlend();
         mc.getTextureManager().bindTexture(GuiIngameForge.ICONS);
         GlStateManager.popMatrix();
-        GlStateManager.disableBlend();
     }
 }
