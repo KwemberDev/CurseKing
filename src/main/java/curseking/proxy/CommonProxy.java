@@ -51,7 +51,7 @@ public class CommonProxy {
                 "AquaRegia",
                 6566,
                 instance,
-                64, 3, true,
+                82, 3, true,
                 0x111FF1, 0x55FFFF
         );
         EntityRegistry.registerModEntity(new ResourceLocation(MODID, "lightning_orb"), EntityLightningOrb.class, "LightningOrb", 6655, instance, 64, 10, true);

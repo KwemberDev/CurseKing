@@ -24,7 +24,6 @@ public class FluteEventHandler {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        CurseKing.logger.debug("PLAYING FLUTE MELODY");
         EntityPlayer player = event.player;
         World world = player.world;
         int entityId = player.getEntityId();

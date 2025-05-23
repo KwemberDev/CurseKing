@@ -17,7 +17,7 @@ public class MovingEntitySound extends MovingSound {
         this.yPosF = (float) entity.posY;
         this.zPosF = (float) entity.posZ;
         this.pitch = 2.0f;
-        this.volume = 1.0f;
+        this.volume = 3.0f;
     }
 
     @Override

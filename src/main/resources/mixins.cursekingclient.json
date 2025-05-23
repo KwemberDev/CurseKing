@@ -1,15 +1,16 @@
 {
   "required": true,
-  "minVersion": "0.8",
+  "minVersion": "0.7",
   "package": "curseking.mixin",
   "refmap": "curseking.refmap.json",
   "target": "@env(CLIENT)",
   "mixins": [],
   "client": [
+    "HeartCompat",
     "sky.MixinRenderGlobal"
   ],
   "injectors": {
-    "maxShiftBy": 10,
+    "maxShiftBy": 100,
     "defaultRequire": 1
   }
 }

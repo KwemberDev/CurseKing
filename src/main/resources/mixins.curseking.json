@@ -1,14 +1,15 @@
 {
   "required": true,
-  "minVersion": "0.8",
+  "minVersion": "0.7",
   "package": "curseking.mixin",
   "refmap": "curseking.refmap.json",
   "target": "@env(DEFAULT)",
   "mixins": [
-    "MixinGuiIngame"
+    "MixinGuiIngame",
+    "sky.MixinEntityRenderer"
   ],
   "injectors": {
-    "maxShiftBy": 10,
+    "maxShiftBy": 100,
     "defaultRequire": 1
   }
 }

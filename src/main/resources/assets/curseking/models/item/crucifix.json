@@ -1,15 +1,15 @@
 {
-  "parent": "curseking:block/crosstop",
+  "parent": "curseking:block/cross",
   "display": {
     "thirdperson_righthand": {
       "rotation": [ 10, -45, 0 ],
       "translation": [ 0, 1.5, 2 ],
-      "scale": [ 0.375, 0.375, 0.375 ]
+      "scale": [ 0.3, 0.3, 0.3 ]
     },
     "thirdperson_lefthand": {
       "rotation": [ 10, 45, 0 ],
       "translation": [ 0, 1.5, 2 ],
-      "scale": [ 0.375, 0.375, 0.375 ]
+      "scale": [ 0.3, 0.3, 0.3 ]
     },
     "firstperson_righthand": {
       "rotation": [ 0, -45, 0 ],
@@ -23,8 +23,8 @@
     },
     "gui": {
       "rotation": [ 30, 225, 0 ],
-      "translation": [ 0, -4, 0 ],
-      "scale": [ 0.35, 0.35, 0.35 ]
+      "translation": [ 0, -1, 0 ],
+      "scale": [ 0.275, 0.275, 0.275 ]
     },
     "head": {
       "rotation": [ 0, 0, 0 ],
@@ -33,13 +33,13 @@
     },
     "ground": {
       "rotation": [ 0, 0, 0 ],
-      "translation": [ 0, 3, 0 ],
-      "scale": [ 0.5, 0.5, 0.5 ]
+      "translation": [ 0, 7, 0 ],
+      "scale": [ 0.3, 0.3, 0.3 ]
     },
     "fixed": {
       "rotation": [ 0, 180, 0 ],
       "translation": [ 0, 0, 0 ],
-      "scale": [ 0.5, 0.5, 0.5 ]
+      "scale": [ 0.35, 0.35, 0.35 ]
     }
   }
 }

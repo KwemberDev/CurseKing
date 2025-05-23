@@ -5,6 +5,7 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.fml.common.Mod;
 
 @Config(modid = CurseKing.MODID)
+@Config.LangKey("curseking.config.title")
 public class CurseKingConfig {
 
     @Config.Name("Default (Build-in) Curse Settings")
@@ -72,6 +73,10 @@ public class CurseKingConfig {
         @Config.Name("Aqua Regius Boss stats.")
         public BossStats aquaRegiusBossStats = new BossStats();
 
+        @Config.Name("Aqua Regius Attack Type Chances | NOT RECOMMENDED TO CHANGE")
+        @Config.Comment("The chance the boss uses a specific attack. these to in this order: Primary -> Water Whirl -> Arrow Rain. For an attack to happen the ones before it need to fail their checks.")
+        public BossChanceType bossChanceType = new BossChanceType();
+
         @Config.Name("The Fallen Health")
         public float TheFallenHealth = 100F;
 
@@ -82,7 +87,7 @@ public class CurseKingConfig {
         public float TheFallenAttackDamage = 30F;
 
         @Config.Name("The Fallen Spawn Chance")
-        public int TheFallenSpawnWeight = 5;
+        public int TheFallenSpawnWeight = 1;
 
     }
 
@@ -103,9 +108,6 @@ public class CurseKingConfig {
         @Config.Name("Aqua Regius Attacking Movement Speed")
         public float aquaRegiusAttackMovementSpeed = 2F;
 
-        @Config.Name("Aqua Regius Attack Type Chances | NOT RECOMMENDED TO CHANGE")
-        @Config.Comment("The chance the boss uses a specific attack. these to in this order: Primary -> Water Whirl -> Arrow Rain. \n For an attack to happen the ones before it need to fail their checks.")
-        public BossChanceType bossChanceType = new BossChanceType();
     }
 
     @Mod.EventBusSubscriber

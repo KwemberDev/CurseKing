@@ -100,7 +100,7 @@ public class EntityAIAquaRegiaAttack extends EntityAIBase {
                         World world = entity.world;
                         Random rand = entity.getRNG();
 
-                        if (rand.nextFloat() < CurseKingConfig.mobSettings.aquaRegiusBossStats.bossChanceType.primary && !isPerformingSpiral) { // 0.25
+                        if (rand.nextFloat() < CurseKingConfig.mobSettings.bossChanceType.primary && !isPerformingSpiral) { // 0.25
                             entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_POSITION);
                             entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_ARROW_SHOT);                            for (int i = 0; i < 5; i++) {
                                 EntityLightningOrb orb = new EntityLightningOrb(world, entity);
@@ -121,10 +121,10 @@ public class EntityAIAquaRegiaAttack extends EntityAIBase {
                                 stateTimer--;
                             }
                             entity.getLookHelper().setLookPositionWithEntity(target, 30.0F, 30.0F);
-                        } else if (rand.nextFloat() < CurseKingConfig.mobSettings.aquaRegiusBossStats.bossChanceType.whirl && !isPerformingSpiral) {
+                        } else if (rand.nextFloat() < CurseKingConfig.mobSettings.bossChanceType.whirl && !isPerformingSpiral) {
                             entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_POSITION);
                             entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_WATERSPOUT);
-                            int numWhirls = CurseKingConfig.mobSettings.aquaRegiusBossStats.bossChanceType.whirlBaseAmount + rand.nextInt(5); // 4 to 6
+                            int numWhirls = CurseKingConfig.mobSettings.bossChanceType.whirlBaseAmount + rand.nextInt(5); // 4 to 6
                             for (int i = 0; i < numWhirls; i++) {
                                 double vx = (rand.nextDouble() - 0.5); // -0.3 to 0.3
                                 double vz = (rand.nextDouble() - 0.5); // -0.3 to 0.3
@@ -135,7 +135,7 @@ public class EntityAIAquaRegiaAttack extends EntityAIBase {
                                         entity.posX,
                                         entity.posY + entity.height * 0.7,
                                         entity.posZ,
-                                        vx, vy, vz
+                                        vx, vy, vz, false
                                 );
                                 world.spawnEntity(whirl);
                             }

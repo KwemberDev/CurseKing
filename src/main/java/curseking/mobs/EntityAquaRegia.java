@@ -7,18 +7,18 @@ import curseking.mobs.soundhelper.MovingEntitySound;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
@@ -46,6 +46,9 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
     private static final int ARROW_SHOT_DURATION = 40;
     private static final int WATERSPOUT_DURATION = 60;
     private static final int ARROW_RAIN_DURATION = 60;
+
+    private int deathTicks = 0;
+
 
     public enum AquaRegiaState {
         NEUTRAL_IDLE,
@@ -75,7 +78,6 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
         this.tasks.addTask(6, new EntityAIAquaRegiaAttack(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTargetFlying(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTargetFlying(this, EntityWither.class));
     }
 
     public void setAquaRegiaState(AquaRegiaState state) {
@@ -97,6 +99,9 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
         this.dataManager.register(HOSTILEPOS, Boolean.FALSE);
         this.dataManager.register(CURRENTSTATE, AquaRegiaState.NEUTRAL_IDLE.name());
         this.dataManager.register(ATTACKTIMER, 0);
+        // Stops all music in the MUSIC category
+
+        Minecraft.getMinecraft().getSoundHandler().stop("", SoundCategory.MUSIC);
         Minecraft.getMinecraft().getSoundHandler().playSound(new MovingEntitySound(this, SoundEvents.MUSIC_CREDITS));
 
     }
@@ -166,7 +171,7 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(CurseKingConfig.mobSettings.aquaRegiusBossStats.aquaRegiusHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(64.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.4F);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0F);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(5.0D);
@@ -175,6 +180,15 @@ public class EntityAquaRegia extends EntityFlying implements IAnimatable {
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
+        int radius = 10;
+        BlockPos center = this.getPosition();
+        for (BlockPos pos : BlockPos.getAllInBoxMutable(
+                center.add(-radius, -15, -radius),
+                center.add(radius, 1, radius))) {
+            if (world.getBlockState(pos).getBlock() == Blocks.FIRE) {
+                world.setBlockToAir(pos);
+            }
+        }
     }
 
     @Override

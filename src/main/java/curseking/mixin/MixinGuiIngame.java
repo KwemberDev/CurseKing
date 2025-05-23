@@ -17,6 +17,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
+import net.silentchaos512.scalinghealth.config.Config;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,6 +40,7 @@ public abstract class MixinGuiIngame extends GuiIngame {
      */
     @Inject(method = "renderHealth", at = @At(value = "HEAD"), cancellable = true, remap = false)
     private void onRenderHealth(int width, int height, CallbackInfo ci) {
+        if (Loader.isModLoaded("scalinghealth") && Config.Client.Hearts.customHeartRendering) return;
         mc.getTextureManager().bindTexture(ICONS);
         if (MinecraftForge.EVENT_BUS.post(new RenderGameOverlayEvent.Pre(new RenderGameOverlayEvent(mc.getRenderPartialTicks(), new ScaledResolution(mc)), RenderGameOverlayEvent.ElementType.HEALTH))) return;
         mc.profiler.startSection("health");

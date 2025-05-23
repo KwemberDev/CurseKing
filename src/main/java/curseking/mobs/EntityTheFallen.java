@@ -2,7 +2,7 @@ package curseking.mobs;
 
 import curseking.biome.BiomeRegistry;
 import curseking.config.CurseKingConfig;
-import curseking.mobs.AIHelper.EntityAIStayInBiome;
+import curseking.mobs.AIHelper.EntityFallenWanderInBiome;
 import curseking.proxy.ModSounds;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -67,7 +67,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new curseking.mobs.AIHelper.EntityAIFallenAttack(this));
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.5D));
-        this.tasks.addTask(6, new EntityAIStayInBiome(this, BiomeRegistry.Grave, 1D));
+        this.tasks.addTask(7, new EntityFallenWanderInBiome(this, 0.75D, BiomeRegistry.Grave));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -82,7 +82,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ATTACKING, false);
-        this.dataManager.register(HEAVY_ATTACK, false); // default to heavy
+        this.dataManager.register(HEAVY_ATTACK, false);
     }
 
     @Override

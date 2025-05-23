@@ -1,5 +1,6 @@
 package curseking.eventhandlers.mobeventhandlers;
 
+import curseking.CurseKing;
 import curseking.mobs.EntityAquaRegia;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public class WeatherEventHandler {
     private static final int WEATHER_RADIUS = 64;
     private static boolean isForcingRain = false;
+    private static boolean foundBoss = false;
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -19,22 +21,27 @@ public class WeatherEventHandler {
         if (!(event.player instanceof EntityPlayerMP)) return;
 
         EntityPlayerMP player = (EntityPlayerMP) event.player;
-        boolean foundBoss = false;
         for (Entity entity : player.world.loadedEntityList) {
             if (entity instanceof EntityAquaRegia && entity.getDistance(player) <= WEATHER_RADIUS) {
                 foundBoss = true;
                 break;
+            } else {
+                foundBoss = false;
             }
         }
 
         if (foundBoss && !isForcingRain) {
-            player.connection.sendPacket(new SPacketChangeGameState(7, 1.0F)); // Start rain
-            player.connection.sendPacket(new SPacketChangeGameState(8, 0.0F)); // No thunder
             isForcingRain = true;
         } else if (!foundBoss && isForcingRain) {
-            player.connection.sendPacket(new SPacketChangeGameState(7, 0.0F)); // Stop rain
-            player.connection.sendPacket(new SPacketChangeGameState(8, 0.0F)); // Stop thunder
             isForcingRain = false;
         }
+    }
+
+    public static boolean isForcingRain() {
+        return isForcingRain;
+    }
+
+    public static boolean isFoundBoss () {
+        return foundBoss;
     }
 }

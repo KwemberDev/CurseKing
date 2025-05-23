@@ -10,6 +10,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class BlockCrucifix extends Block {
@@ -88,7 +91,19 @@ public class BlockCrucifix extends Block {
                     facing = EnumFacing.EAST;
                     break;
             }
+            if (variant == EnumVariant.SLANTED) {
+                EnumFacing left = facing.rotateYCCW();
+                EnumFacing right = facing.rotateY();
+                BlockPos groundPos = pos.down();
+                BlockPos leftOfGround = groundPos.offset(left);
+                BlockPos rightOfGround = groundPos.offset(right);
+                if (world.isAirBlock(leftOfGround) || world.getBlockState(leftOfGround).getMaterial() == Material.WATER
+                        || world.isAirBlock(rightOfGround) || world.getBlockState(rightOfGround).getMaterial() == Material.WATER) {
+                    return;
+                }
+            }
         }
+
 
         IBlockState lower = getDefaultState()
                 .withProperty(HALF, BlockDoor.EnumDoorHalf.LOWER)
@@ -122,10 +137,15 @@ public class BlockCrucifix extends Block {
 
         AxisAlignedBB baseAABB = isTop
                 ? SLANTED_TOP_AABB
-                : SLANTED_BOTTOM_AABB;
+                : SLANTED_BOTTOM_AABB.offset(0.5, 0, 0.0);
 
         if (!isSlanted) {
-            return isTop ? UPRIGHT_TOP_AABB : UPRIGHT_BOTTOM_AABB;
+
+            if (!isTop) {
+                return UPRIGHT_BOTTOM_AABB;
+            } else {
+                return UPRIGHT_TOP_AABB;
+            }
         }
 
         // Rotate the AABB based on facing
@@ -217,6 +237,12 @@ public class BlockCrucifix extends Block {
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return super.canPlaceBlockAt(worldIn, pos)
                 && worldIn.getBlockState(pos.up()).getBlock().isReplaceable(worldIn, pos.up());
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(TextFormatting.DARK_GRAY + "Sneak to place slanted.");
     }
 
 }

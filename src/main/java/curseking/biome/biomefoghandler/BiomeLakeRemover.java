@@ -13,7 +13,6 @@ public class BiomeLakeRemover {
     public void populationEvent(PopulateChunkEvent.Populate event) {
         if (event.getType() == PopulateChunkEvent.Populate.EventType.LAKE || event.getType() == PopulateChunkEvent.Populate.EventType.LAVA) {
             if (event.getWorld().getBiome(new BlockPos(event.getChunkX() << 4, 64, event.getChunkZ() << 4)) instanceof BiomeGraveForgottenDeity) {
-                CurseKing.logger.debug("DENIED LAKE POPULATE");
                 event.setResult(Event.Result.DENY);
             }
         }

@@ -19,3 +19,4 @@ itemGroup.curseking_tab=CurseBreaker
 item.curseking.corefragment.name=§7Core Fragment
 tile.elementalcore.name=Shattered Core
 tile.corefull.name=Shattered Core Block
+curseking.config.title=cursebreaker config

@@ -27,9 +27,13 @@ public class EntityWhirl extends EntityLivingBase implements IAnimatable {
     private double motY;
     private double motZ;
 
+    private boolean grav = false;
+
     private final AnimationFactory factory = new AnimationFactory(this);
 
+
     public static final DataParameter<Boolean> DONE_SPAWNING = EntityDataManager.createKey(EntityWhirl.class, DataSerializers.BOOLEAN);
+    public static final DataParameter<Boolean> HAS_GRAVITY = EntityDataManager.createKey(EntityWhirl.class, DataSerializers.BOOLEAN);
 
     public EntityWhirl(World worldIn) {
         super(worldIn);
@@ -38,7 +42,7 @@ public class EntityWhirl extends EntityLivingBase implements IAnimatable {
         this.setNoGravity(true);
     }
 
-    public EntityWhirl(World worldIn, double x, double y, double z, double velX, double velY, double velZ) {
+    public EntityWhirl(World worldIn, double x, double y, double z, double velX, double velY, double velZ, boolean gravity) {
         this(worldIn);
         this.setPosition(x, y, z);
         this.motionX = velX;
@@ -47,12 +51,15 @@ public class EntityWhirl extends EntityLivingBase implements IAnimatable {
         this.motX = velX;
         this.motY = velY;
         this.motZ = velZ;
+        this.getDataManager().set(HAS_GRAVITY, gravity);
+        this.grav = gravity;
     }
 
     @Override
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(DONE_SPAWNING, false);
+        this.dataManager.register(HAS_GRAVITY, grav);
         this.setNoGravity(true);
     }
 
@@ -107,6 +114,11 @@ public class EntityWhirl extends EntityLivingBase implements IAnimatable {
             this.motionX = motX;
             this.motionY = motY;
             this.motionZ = motZ;
+        }
+
+        if (this.getDataManager().get(HAS_GRAVITY)) {
+            this.motionY -= 0.04D;
+            this.motY -= 0.04D;
         }
     }
 

@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -37,10 +38,14 @@ public class CursedHeartOverlay {
         int playerMaxHearts = MathHelper.ceil(playerMaxHealth / 2);
         int playerHealthRows = MathHelper.ceil((float) playerMaxHearts / 10);
 
+        if (Loader.isModLoaded("scalinghealth")) {
+            playerHealthRows +=1;
+        }
         int rowHeight = Math.max(10 - (playerHealthRows - 2), 3);
         if (rowHeight == 11) rowHeight = 10;
 
         if (data != null && data.hasCurse("curse_decay")) {
+
             int playerMaxHeartsCursed = MathHelper.ceil((playerMaxHealth + DECAY_HEALTH) / 2);
             int playerCursedHealthRows = MathHelper.ceil((float) playerMaxHeartsCursed / 10);
 
