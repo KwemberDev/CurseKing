@@ -102,7 +102,8 @@ public class EntityAIAquaRegiaAttack extends EntityAIBase {
 
                         if (rand.nextFloat() < CurseKingConfig.mobSettings.bossChanceType.primary && !isPerformingSpiral) { // 0.25
                             entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_POSITION);
-                            entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_ARROW_SHOT);                            for (int i = 0; i < 5; i++) {
+                            entity.setAquaRegiaState(EntityAquaRegia.AquaRegiaState.HOSTILE_ARROW_SHOT);
+                            for (int i = 0; i < 5; i++) {
                                 EntityLightningOrb orb = new EntityLightningOrb(world, entity);
                                 double dx = target.posX - entity.posX;
                                 double dy = target.posY + target.getEyeHeight() - orb.posY;

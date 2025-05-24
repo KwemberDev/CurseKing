@@ -22,15 +22,9 @@ public class GuiCrystallinePurifier extends GuiContainer {
         this.ySize = 166;
     }
 
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.fontRenderer.drawString("Crystalline Purifier", 8, 6, 4210752);
-    }
-
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(CurseKing.MODID, "textures/gui/purifier.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(CurseKing.MODID, "textures/gui/purifier2.png"));
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         // === DRAW FLAME INDICATOR ===
@@ -38,8 +32,8 @@ public class GuiCrystallinePurifier extends GuiContainer {
         int currentItemBurnTime = tileEntity.getField(1);
 
         if (burnTime > 0) {
-            int burnHeight = (int)(16 * ((float) burnTime / (float) currentItemBurnTime));
-            drawTexturedModalRect(guiLeft + 74, guiTop + 36 + 14 - burnHeight, 176, 46 - burnHeight, 17, burnHeight + 1);
+            int burnHeight = (int)(20 * ((float) burnTime / (float) currentItemBurnTime));
+            drawTexturedModalRect(guiLeft + 89, guiTop + 15 + 8 - burnHeight, 176, 40 - burnHeight, 20, burnHeight);
         }
 
         // === DRAW PURIFYING ARROW ===
@@ -47,9 +41,8 @@ public class GuiCrystallinePurifier extends GuiContainer {
         int totalCookTime = tileEntity.getField(3);
 
         if (totalCookTime > 0 && cookTime > 0) {
-            int progressWidth = (int)(24 * ((float)cookTime / totalCookTime));
-            drawTexturedModalRect(guiLeft + 97, guiTop + 34, 176, 14, progressWidth + 1, 16);
-            drawTexturedModalRect(guiLeft + 41, guiTop + 16, 176, 14, progressWidth + 1, 16);
+            int progressHeight = (int)(20 * ((float)cookTime / totalCookTime));
+            drawTexturedModalRect(guiLeft + 114, guiTop + 34, 176, 0, 14, progressHeight);
         }
     }
 

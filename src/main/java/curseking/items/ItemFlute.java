@@ -47,6 +47,7 @@ public class ItemFlute extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         player.setActiveHand(hand);
+        FluteEventHandler.playFluteMelody((EntityPlayer) player, world);
         return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
@@ -85,7 +86,7 @@ public class ItemFlute extends Item {
                 ((EntityPlayer) player).sendStatusMessage(new TextComponentString(TextFormatting.GRAY + "None respond to the flutes music..."), true);
             }
         }
-        FluteEventHandler.playFluteMelody((EntityPlayer) player, world);
+        FluteEventHandler.stopFluteMelody((EntityPlayer) player, world);
     }
 
     @SideOnly(Side.CLIENT)

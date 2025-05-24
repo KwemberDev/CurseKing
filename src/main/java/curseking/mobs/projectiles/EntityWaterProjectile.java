@@ -37,15 +37,11 @@ public class EntityWaterProjectile extends EntityThrowable {
                 this.inGround = true;
             }
         }
-        this.setRotation(0, 90);
     }
 
     @Override
     public void onUpdate() {
         this.setSize(0.75F, 0.75F);
-        this.setRotation(0, 90);
-        this.rotationPitch = 90;
-        this.rotationYaw = 0;
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
         if (!inGround) {
@@ -53,10 +49,21 @@ public class EntityWaterProjectile extends EntityThrowable {
             if (this.ticksExisted % 10 == 0) {
                 this.world.spawnParticle(EnumParticleTypes.DRIP_WATER, this.posX + (rand.nextFloat() * 0.2) - 0.1, this.posY + (rand.nextFloat() * 0.2) - 0.1, this.posZ + (rand.nextFloat() * 0.2) - 0.1, 0, 0, 0);
             }
+            this.prevPosY = posY;
         }
         if (this.ticksExisted > 200) {
             this.setDead();
         }
+        this.setRotation(0,0);
+    }
+
+    @Override
+    public void onEntityUpdate() {
+        super.onEntityUpdate();
+        this.setRotation(0,0);
+        this.prevRotationYaw = this.rotationYaw;
+        this.prevRotationPitch = this.rotationPitch;
+        this.prevPosY = posY;
     }
 
     @Override

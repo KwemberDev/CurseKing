@@ -16,12 +16,12 @@ public class ContainerCrystallinePurifier extends Container {
     public ContainerCrystallinePurifier(InventoryPlayer playerInv, IInventory tile) {
         this.tile = tile;
         // Slot 0: Input
-        this.addSlotToContainer(new Slot(tile, 0, 75, 17));
-        this.addSlotToContainer(new Slot(tile, 1, 75, 53));
-        this.addSlotToContainer(new Slot(tile, 2, 17, 17));
+        this.addSlotToContainer(new Slot(tile, 0, 113, 17));
+        this.addSlotToContainer(new Slot(tile, 1, 91, 25));
+        this.addSlotToContainer(new Slot(tile, 2, 135, 8));
 
         // Slot 1: Output
-        this.addSlotToContainer(new SlotFurnaceOutput(playerInv.player, tile, 3, 131, 35));
+        this.addSlotToContainer(new SlotFurnaceOutput(playerInv.player, tile, 3, 113, 60));
 
         // Player inventory
         for (int i = 0; i < 3; ++i)

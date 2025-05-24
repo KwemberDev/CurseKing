@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=up": { "model": "curseking:ashentorch" },
+    "facing=east": { "model": "curseking:ashentorch_wall" },
+    "facing=south": { "model": "curseking:ashentorch_wall", "y": 90 },
+    "facing=west": { "model": "curseking:ashentorch_wall", "y": 180 },
+    "facing=north": { "model": "curseking:ashentorch_wall", "y": 270 }
+  }
+}

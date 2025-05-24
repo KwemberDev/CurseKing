@@ -1,5 +1,6 @@
 package curseking.items.helper;
 
+import curseking.items.ItemFlute;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
@@ -21,24 +22,33 @@ public class FluteEventHandler {
         playerNoteTicks.put(entityId, 0);
     }
 
+    public static void stopFluteMelody(EntityPlayer player, World world) {
+        int entityId = player.getEntityId();
+        playerNoteTicks.remove(entityId);
+    }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
         World world = player.world;
         int entityId = player.getEntityId();
+
+        // Check if player is still holding the flute
+        boolean holdingFlute = player.getHeldItemMainhand().getItem() instanceof ItemFlute
+                || player.getHeldItemOffhand().getItem() instanceof ItemFlute;
+
+        if (!holdingFlute && playerNoteTicks.containsKey(entityId)) {
+            stopFluteMelody(player, world);
+            return;
+        }
+
         if (playerNoteTicks.containsKey(entityId)) {
             int tick = playerNoteTicks.get(entityId);
-            if (tick == 0) {
+            if (tick % 10 == 0) {
+                float volume = 0.6F + world.rand.nextFloat() * 0.8F;
+                float pitch = 0.5F + world.rand.nextFloat() * 1.5F;
                 world.playSound(null, player.posX, player.posY, player.posZ,
-                        SoundEvents.BLOCK_NOTE_FLUTE, SoundCategory.PLAYERS, 1.2F, 1.0F);
-            } else if (tick == 10) {
-                world.playSound(null, player.posX, player.posY, player.posZ,
-                        SoundEvents.BLOCK_NOTE_FLUTE, SoundCategory.PLAYERS, 0.8F, 1.0F);
-            } else if (tick == 20) {
-                world.playSound(null, player.posX, player.posY, player.posZ,
-                        SoundEvents.BLOCK_NOTE_FLUTE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                playerNoteTicks.remove(entityId); // End of melody
-                return;
+                        SoundEvents.BLOCK_NOTE_FLUTE, SoundCategory.PLAYERS, volume, pitch);
             }
             playerNoteTicks.put(entityId, tick + 1);
         }

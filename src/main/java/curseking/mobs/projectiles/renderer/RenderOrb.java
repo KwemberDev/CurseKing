@@ -23,7 +23,7 @@ public class RenderOrb extends Render<EntityWaterProjectile> {
     @Override
     public void doRender(EntityWaterProjectile entity, double x, double y, double z, float entityYaw, float partialTicks) {
         net.minecraft.client.renderer.GlStateManager.pushMatrix();
-        net.minecraft.client.renderer.GlStateManager.translate(x, y+0.5, z);
+        net.minecraft.client.renderer.GlStateManager.translate(x, y+0.5, z - 1);
 
         net.minecraft.client.renderer.GlStateManager.rotate(-entityYaw, 0.0F, 1.0F, 0.0F);
         net.minecraft.client.renderer.GlStateManager.rotate(entity.rotationPitch, 1.0F, 0.0F, 0.0F);

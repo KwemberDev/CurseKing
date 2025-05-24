@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "S"
+  ],
+  "key": {
+    "G": { "item": "curseking:ashes" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "curseking:ashentorch",
+    "count": 1
+  }
+}
