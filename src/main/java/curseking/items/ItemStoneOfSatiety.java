@@ -6,6 +6,7 @@ import curseking.ICurseData;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static curseking.eventhandlers.PlayerEventHandler.sendCurseDataToClient;
 
 public class ItemStoneOfSatiety extends Item {
 
@@ -41,6 +44,7 @@ public class ItemStoneOfSatiety extends Item {
 
             if (data != null && !data.hasBlessing("blessing_satiated")) {
                 data.addBlessing("blessing_satiated");
+                sendCurseDataToClient((EntityPlayerMP) player);
 
                 player.sendStatusMessage(new TextComponentString(TextFormatting.GRAY + "Your hunger lessens as you feel revitalized."), true);
 
