@@ -17,6 +17,9 @@ public class CurseKingConfig {
     @Config.Name("Mob Settings")
     public static final MobSettings mobSettings = new MobSettings();
 
+    @Config.Name("Grave Biome Generation Weight")
+    public static int graveBiomeGenerationWeight = 5;
+
     @Mod.EventBusSubscriber
     public static class DefaultCurses {
 

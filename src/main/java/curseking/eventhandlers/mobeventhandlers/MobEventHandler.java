@@ -15,6 +15,8 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -87,6 +89,8 @@ public class MobEventHandler {
                 sendCurseDataToClient((EntityPlayerMP) player);
 
                 player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 40, 0, false, false));
+
+                player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_GRAY + "Your soul feels heavy, you have been cursed."), false);
 
                 player.world.playSound(
                         null,

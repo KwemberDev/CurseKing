@@ -1,5 +1,6 @@
 package curseking.mobs;
 
+import curseking.ModBlocks;
 import curseking.biome.BiomeRegistry;
 import curseking.config.CurseKingConfig;
 import curseking.mobs.AIHelper.EntityFallenWanderInBiome;
@@ -15,6 +16,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -67,7 +69,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new curseking.mobs.AIHelper.EntityAIFallenAttack(this));
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.5D));
-        this.tasks.addTask(7, new EntityFallenWanderInBiome(this, 0.75D, BiomeRegistry.Grave));
+//        this.tasks.addTask(7, new EntityFallenWanderInBiome(this, 0.75D, BiomeRegistry.Grave));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -83,6 +85,12 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
         super.entityInit();
         this.dataManager.register(ATTACKING, false);
         this.dataManager.register(HEAVY_ATTACK, false);
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        BlockPos pos = new BlockPos(this.posX, this.getEntityBoundingBox().minY - 1, this.posZ);
+        return this.world.getBlockState(pos).getBlock() == ModBlocks.graveSand && super.getCanSpawnHere();
     }
 
     @Override
@@ -142,7 +150,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.attack_fast", true));
             }
             return PlayState.CONTINUE;
-        } else if (this.posX != this.prevPosX || this.posY != this.prevPosY || this.posZ != this.prevPosZ || this.getNavigator().getPath() != null) {
+        } else if (this.posX != this.prevPosX || this.posY != this.prevPosY || this.posZ != this.prevPosZ || this.getNavigator().getPath() != null || this.velocityChanged) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.walk", true));
         } else if (this.getNavigator().getPath() == null) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.idle", true));

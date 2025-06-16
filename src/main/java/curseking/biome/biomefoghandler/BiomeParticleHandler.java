@@ -20,7 +20,7 @@ public class BiomeParticleHandler {
         Minecraft mc = Minecraft.getMinecraft();
         if (mc.player == null || mc.world == null) return;
 
-        int chunkRadius = 6;
+        int chunkRadius = 4;
         int chunkSize = 16;
         BlockPos playerPos = mc.player.getPosition();
         int playerChunkX = playerPos.getX() >> 4;
