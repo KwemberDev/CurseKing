@@ -30,18 +30,25 @@ public class CommandFindForgottenDeityBiome extends CommandBase {
         BlockPos start = sender.getPosition();
         Biome targetBiome = BiomeRegistry.Grave;
 
-        int maxRadius = 5120; // Max search radius in blocks
-        int chunkStep = 1;
+        int maxRadius = 320; // in chunks (320 * 16 = 5120 blocks)
         BlockPos found = null;
 
-        outerLoop:
-        for (int radius = 0; radius < maxRadius; radius += 16 * chunkStep) {
-            for (int dx = -radius; dx <= radius; dx += 16 * chunkStep) {
-                for (int dz = -radius; dz <= radius; dz += 16 * chunkStep) {
+        int startChunkX = start.getX() >> 4;
+        int startChunkZ = start.getZ() >> 4;
 
+        outerLoop:
+        for (int radius = 0; radius <= maxRadius; radius++) {
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    // Only check the edge of the current square ring
                     if (Math.abs(dx) != radius && Math.abs(dz) != radius) continue;
 
-                    BlockPos checkPos = start.add(dx, 0, dz);
+                    int chunkX = startChunkX + dx;
+                    int chunkZ = startChunkZ + dz;
+                    int blockX = (chunkX << 4) + 8; // center of chunk
+                    int blockZ = (chunkZ << 4) + 8;
+                    BlockPos checkPos = new BlockPos(blockX, start.getY(), blockZ);
+
                     Biome biome = world.getBiome(checkPos);
                     if (biome == targetBiome) {
                         found = checkPos;
@@ -55,7 +62,7 @@ public class CommandFindForgottenDeityBiome extends CommandBase {
             sender.sendMessage(new TextComponentString(
                     String.format("Found Forgotten Deity biome at: X=%d, Z=%d", found.getX(), found.getZ())));
         } else {
-            sender.sendMessage(new TextComponentString("Biome not found within " + maxRadius + " blocks."));
+            sender.sendMessage(new TextComponentString("Biome not found within " + (maxRadius * 16) + " blocks."));
         }
     }
 
