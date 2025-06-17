@@ -33,13 +33,13 @@ public class BiomeGraveForgottenDeity extends Biome {
                 EntityTheFallen.class, // The entity class
                 CurseKingConfig.mobSettings.TheFallenSpawnWeight, // Spawn weight
                 1,                   // Min group size
-                2                   // Max group size
+                1                   // Max group size
         ));
         this.spawnableMonsterList.add(new SpawnListEntry(
                 EntityTheFallen.class,
                 CurseKingConfig.mobSettings.TheFallenSpawnWeight,
                 1,
-                2
+                1
         ));
     }
 

@@ -89,8 +89,16 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
 
     @Override
     public boolean getCanSpawnHere() {
+        int maxNearby = 3; // Max allowed in a 32-block radius
+        int count = this.world.getEntitiesWithinAABB(
+                this.getClass(),
+                this.getEntityBoundingBox().grow(32.0D)
+        ).size();
+
         BlockPos pos = new BlockPos(this.posX, this.getEntityBoundingBox().minY - 1, this.posZ);
-        return this.world.getBlockState(pos).getBlock() == ModBlocks.graveSand && super.getCanSpawnHere();
+        boolean onGraveSand = this.world.getBlockState(pos).getBlock() == ModBlocks.graveSand;
+
+        return count < maxNearby && onGraveSand && super.getCanSpawnHere();
     }
 
     @Override
