@@ -69,7 +69,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new curseking.mobs.AIHelper.EntityAIFallenAttack(this));
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.5D));
-//        this.tasks.addTask(7, new EntityFallenWanderInBiome(this, 0.75D, BiomeRegistry.Grave));
+        this.tasks.addTask(7, new EntityFallenWanderInBiome(this, 0.75D, BiomeRegistry.Grave));
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -160,7 +160,7 @@ public class EntityTheFallen extends EntityMob implements IAnimatable {
             return PlayState.CONTINUE;
         } else if (this.posX != this.prevPosX || this.posY != this.prevPosY || this.posZ != this.prevPosZ || this.getNavigator().getPath() != null || this.velocityChanged) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.walk", true));
-        } else if (this.getNavigator().getPath() == null) {
+        } else if (this.getNavigator().getPath() == null && this.motionX < 0.01 && this.motionY  < 0.01 && this.motionZ  < 0.01) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.fallen.idle", true));
         }
         return PlayState.CONTINUE;

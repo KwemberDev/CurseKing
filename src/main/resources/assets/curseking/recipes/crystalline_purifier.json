@@ -1,15 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PPP",
-    "OSO",
-    "DOD"
+    "POP",
+    "O O",
+    "DDD"
   ],
   "key": {
-    "D": { "item": "minecraft:diamond_block"},
-    "P": { "item": "minecraft:prismarine", "data": 1 },
-    "O": { "item": "minecraft:obsidian" },
-    "S": { "item": "minecraft:sea_lantern" }
+    "D": { "item": "minecraft:stone_slab", "data": 5 },
+    "P": { "item": "minecraft:iron_ingot"},
+    "O": { "item": "minecraft:clay_ball" }
   },
   "result": {
     "item": "curseking:crystalline_purifier",
